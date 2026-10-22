@@ -22,6 +22,45 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 3200);
   }
 
+  // Retrieve active authenticated user from auth.js
+  const currentUser = typeof getCurrentUser === "function" ? getCurrentUser() : {
+    name: "Kathar Hussain",
+    role: "student",
+    roleLabel: "🎓 Student",
+    title: "Computer Science & Engineering • Class of 2024",
+    avatar: "👨‍💻"
+  };
+
+  // Sync Profile Card with active user
+  const profileName = document.querySelector(".user-name");
+  const profileRole = document.querySelector(".user-role");
+  const profileAvatar = document.querySelector(".profile-avatar-wrap span");
+  if (profileName) profileName.textContent = currentUser.name;
+  if (profileRole) profileRole.textContent = currentUser.title;
+  if (profileAvatar) profileAvatar.textContent = currentUser.avatar;
+
+  // Role-specific sections visibility
+  const adminPanel = document.getElementById("adminModerationPanel");
+  const alumniPostJobBtn = document.getElementById("alumniPostJobBtn");
+  const applicantReviewSection = document.getElementById("applicantReviewSection");
+  const studentApplicationsTracker = document.getElementById("studentApplicationsTracker");
+
+  if (currentUser.role === "admin") {
+    if (adminPanel) adminPanel.style.display = "block";
+    if (alumniPostJobBtn) alumniPostJobBtn.style.display = "inline-flex";
+    if (applicantReviewSection) applicantReviewSection.style.display = "block";
+  } else if (currentUser.role === "alumni") {
+    if (alumniPostJobBtn) alumniPostJobBtn.style.display = "inline-flex";
+    if (applicantReviewSection) applicantReviewSection.style.display = "block";
+    if (adminPanel) adminPanel.style.display = "none";
+  } else {
+    // Student
+    if (adminPanel) adminPanel.style.display = "none";
+    if (alumniPostJobBtn) alumniPostJobBtn.style.display = "none";
+    if (applicantReviewSection) applicantReviewSection.style.display = "none";
+    if (studentApplicationsTracker) studentApplicationsTracker.style.display = "block";
+  }
+
   // --- TAB NAVIGATION (Home, Jobs, Messaging, Notification, Me) ---
   const navItems = document.querySelectorAll(".nav-item[data-tab]");
   const tabViews = document.querySelectorAll(".tab-view");
@@ -84,6 +123,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const applyModal = document.getElementById("applyModal");
   const modalJobTitle = document.getElementById("modalJobTitle");
   const modalJobCompany = document.getElementById("modalJobCompany");
+  const modalCandidateName = document.getElementById("modalCandidateName");
   const confirmApplyBtn = document.getElementById("confirmApplyBtn");
   const closeApplyModal = document.getElementById("closeApplyModal");
   let currentTargetJobBtn = null;
@@ -98,6 +138,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       modalJobTitle.textContent = role;
       modalJobCompany.textContent = comp;
+      if (modalCandidateName) modalCandidateName.textContent = currentUser.name;
       applyModal.classList.add("open");
     }
   });
@@ -116,6 +157,22 @@ document.addEventListener("DOMContentLoaded", () => {
         applyModal.classList.remove("open");
         showToast("Application submitted successfully to " + modalJobTitle.textContent, "🎉");
 
+        // Add to Student Applications tracker live
+        const appList = document.getElementById("myApplicationsList");
+        if (appList) {
+          const item = document.createElement("div");
+          item.className = "app-item";
+          item.style.cssText = "display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 8px; margin-bottom: 8px;";
+          item.innerHTML = `
+            <div>
+              <div style="font-weight: 700; color: #0f172a; font-size: 0.95rem;">${modalJobTitle.textContent}</div>
+              <div style="font-size: 0.8rem; color: #2563eb;">${modalJobCompany.textContent} • Submitted Just Now</div>
+            </div>
+            <span style="background: #fef3c7; color: #92400e; font-size: 0.75rem; font-weight: 700; padding: 4px 10px; border-radius: 9999px;">Under Review</span>
+          `;
+          appList.insertBefore(item, appList.firstChild);
+        }
+
         // Bump notification badge
         const notifBadge = document.querySelector('.nav-item[data-tab="notification"] .nav-badge');
         if (notifBadge) {
@@ -125,6 +182,71 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   }
+
+  // --- RECRUITER / ALUMNI POST NEW JOB MODAL ---
+  const newJobModal = document.getElementById("newJobModal");
+  const openNewJobBtn = document.getElementById("alumniPostJobBtn");
+  const closeNewJobModal = document.getElementById("closeNewJobModal");
+  const submitNewJobBtn = document.getElementById("submitNewJobBtn");
+
+  if (openNewJobBtn && newJobModal) {
+    openNewJobBtn.addEventListener("click", () => {
+      newJobModal.classList.add("open");
+    });
+  }
+
+  if (closeNewJobModal && newJobModal) {
+    closeNewJobModal.addEventListener("click", () => {
+      newJobModal.classList.remove("open");
+    });
+  }
+
+  if (submitNewJobBtn) {
+    submitNewJobBtn.addEventListener("click", () => {
+      const title = document.getElementById("newJobTitle").value.trim();
+      const comp = document.getElementById("newJobCompany").value.trim();
+      const sal = document.getElementById("newJobSalary").value.trim() || "$11,500 / month";
+      const cat = document.getElementById("newJobCategory").value;
+
+      if (!title || !comp) {
+        showToast("Please enter job title and company", "⚠️");
+        return;
+      }
+
+      const jobsList = document.querySelector(".jobs-list");
+      const card = document.createElement("div");
+      card.className = "job-card";
+      card.dataset.category = cat;
+      card.innerHTML = `
+        <div>
+          <div class="job-role">${title}</div>
+          <div class="job-company">${comp} • University Campus Hiring</div>
+          <div class="job-meta">
+            <span>Posted by: ${currentUser.name}</span>
+            <span>• Full-time</span>
+            <span>• Just Now</span>
+          </div>
+        </div>
+        <div style="text-align: right; display: flex; flex-direction: column; align-items: flex-end; gap: 8px;">
+          <span class="job-salary-badge">${sal}</span>
+          <button class="btn-apply" type="button">Easy Apply</button>
+        </div>
+      `;
+      jobsList.insertBefore(card, jobsList.firstChild);
+
+      newJobModal.classList.remove("open");
+      showToast("New job posting published live to portal!", "💼");
+    });
+  }
+
+  // --- CANDIDATE PIPELINE STAGE CHANGER (Recruiter / Alumni Feature) ---
+  document.addEventListener("change", (e) => {
+    if (e.target.classList.contains("stage-selector")) {
+      const newStage = e.target.value;
+      const candidateName = e.target.dataset.candidate;
+      showToast(`${candidateName}'s application stage updated to: ${newStage}`, "📋");
+    }
+  });
 
   // --- CREATE POST MODAL ---
   const postModal = document.getElementById("postModal");
@@ -154,10 +276,10 @@ document.addEventListener("DOMContentLoaded", () => {
       newPost.className = "card post-card";
       newPost.innerHTML = `
         <div class="post-header">
-          <span class="post-avatar">👨‍💻</span>
+          <span class="post-avatar">${currentUser.avatar}</span>
           <div>
-            <div class="post-author-name">Kathar Hussain (You) ★</div>
-            <div class="post-author-headline">Computer Science & Engineering • Class of 2024</div>
+            <div class="post-author-name">${currentUser.name} ★</div>
+            <div class="post-author-headline">${currentUser.title}</div>
             <div class="post-time">Just now • 🌐</div>
           </div>
         </div>
@@ -200,7 +322,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       chatMessages.innerHTML = `
         <div class="msg-bubble msg-received">
-          Hello Kathar! Great to connect with you. How can I assist you regarding tech careers or campus guidance?
+          Hello ${currentUser.name}! Great to connect with you. How can I assist you regarding tech careers or campus guidance?
         </div>
       `;
       showToast(`Chat opened with ${userName}`, "💬");

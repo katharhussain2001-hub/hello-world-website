@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login — University Job Portal & ERP</title>
+  <link rel="stylesheet" href="home.css" />
+  <style>
+    .login-page-wrapper {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+      background: radial-gradient(circle at top, #eff6ff 0%, #f8fafc 100%);
+    }
+
+    .login-container {
+      width: 100%;
+      max-width: 520px;
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px -5px rgba(15, 23, 42, 0.08), 0 4px 12px -2px rgba(15, 23, 42, 0.04);
+      overflow: hidden;
+    }
+
+    .login-header {
+      padding: 32px 32px 20px 32px;
+      text-align: center;
+      border-bottom: 1px solid #f1f5f9;
+    }
+
+    .login-logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: #1e3a8a;
+      text-decoration: none;
+      margin-bottom: 8px;
+    }
+
+    .login-subtitle {
+      font-size: 0.92rem;
+      color: #64748b;
+    }
+
+    /* ROLE SELECTION TABS */
+    .role-tabs {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      padding: 16px 32px 0 32px;
+      gap: 8px;
+    }
+
+    .role-tab-btn {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      color: #64748b;
+      padding: 10px 8px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      transition: all 0.2s ease;
+    }
+
+    .role-tab-btn:hover {
+      background: #eff6ff;
+      border-color: #bfdbfe;
+      color: #1d4ed8;
+    }
+
+    .role-tab-btn.active {
+      background: #2563eb;
+      color: #ffffff;
+      border-color: #2563eb;
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+    }
+
+    .login-body {
+      padding: 24px 32px 32px 32px;
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .form-group label {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #334155;
+    }
+
+    .form-input {
+      padding: 11px 16px;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      font-size: 0.92rem;
+      outline: none;
+      color: #0f172a;
+      background: #ffffff;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .form-input:focus {
+      border-color: #2563eb;
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+    }
+
+    .login-btn {
+      width: 100%;
+      background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+      color: #ffffff;
+      border: none;
+      padding: 12px;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      margin-top: 10px;
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+      transition: all 0.2s ease;
+    }
+
+    .login-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 16px rgba(37, 99, 235, 0.35);
+    }
+
+    .quick-login-divider {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 24px 0 16px 0;
+      color: #94a3b8;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    .quick-login-divider::before, .quick-login-divider::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: #e2e8f0;
+    }
+
+    .quick-role-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .btn-quick-role {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      padding: 10px 16px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #334155;
+      transition: all 0.2s ease;
+    }
+
+    .btn-quick-role:hover {
+      background: #eff6ff;
+      border-color: #93c5fd;
+      color: #1d4ed8;
+      transform: translateX(3px);
+    }
+
+    .role-badge-tag {
+      font-size: 0.72rem;
+      padding: 2px 8px;
+      border-radius: 9999px;
+      font-weight: 700;
+    }
+
+    .back-home-link {
+      margin-top: 24px;
+      color: #64748b;
+      text-decoration: none;
+      font-size: 0.86rem;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: color 0.2s ease;
+    }
+
+    .back-home-link:hover {
+      color: #2563eb;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-page-wrapper">
+    <div class="login-container">
+      <!-- HEADER -->
+      <div class="login-header">
+        <a href="index.html" class="login-logo">
+          <span class="logo-badge">🎓</span>
+          <span>University Job Portal</span>
+        </a>
+        <p class="login-subtitle">Sign in to your role-specific dashboard & master ERP</p>
+      </div>
+
+      <!-- ROLE SELECTOR TABS -->
+      <div class="role-tabs">
+        <button class="role-tab-btn" data-role="admin" type="button">
+          <span style="font-size: 1.2rem;">🛡</span>
+          <span>Admin</span>
+        </button>
+        <button class="role-tab-btn active" data-role="student" type="button">
+          <span style="font-size: 1.2rem;">🎓</span>
+          <span>Student</span>
+        </button>
+        <button class="role-tab-btn" data-role="alumni" type="button">
+          <span style="font-size: 1.2rem;">💼</span>
+          <span>Alumni</span>
+        </button>
+      </div>
+
+      <!-- LOGIN FORM -->
+      <div class="login-body">
+        <form id="loginForm">
+          <div class="form-group">
+            <label for="emailInput">University Email Address</label>
+            <input type="email" id="emailInput" class="form-input" value="student@university.edu" required />
+          </div>
+
+          <div class="form-group">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <label for="passwordInput">Password</label>
+              <a href="#" style="font-size: 0.75rem; color: #2563eb; text-decoration: none; font-weight: 600;">Forgot password?</a>
+            </div>
+            <input type="password" id="passwordInput" class="form-input" value="••••••••" required />
+          </div>
+
+          <button type="submit" id="submitLoginBtn" class="login-btn">
+            Sign In as Student
+          </button>
+        </form>
+
+        <!-- 1-CLICK DEMO LOGIN (INSTANT TESTING) -->
+        <div class="quick-login-divider">
+          <span>Or Instant 1-Click Role Login</span>
+        </div>
+
+        <div class="quick-role-grid">
+          <button class="btn-quick-role" id="quickAdminBtn" type="button">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span>👩‍💼</span>
+              <span>Dr. Sarah Jenkins</span>
+            </div>
+            <span class="role-badge-tag" style="background: #f3e8ff; color: #7c3aed;">Administrator</span>
+          </button>
+
+          <button class="btn-quick-role" id="quickStudentBtn" type="button">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span>👨‍💻</span>
+              <span>Kathar Hussain</span>
+            </div>
+            <span class="role-badge-tag" style="background: #eff6ff; color: #1d4ed8;">Student</span>
+          </button>
+
+          <button class="btn-quick-role" id="quickAlumniBtn" type="button">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span>👨‍🎓</span>
+              <span>Aarav Sharma @ Google</span>
+            </div>
+            <span class="role-badge-tag" style="background: #e0f2fe; color: #0284c7;">Alumni / Recruiter</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- RETURN LINK -->
+    <a href="index.html" class="back-home-link">
+      ← Return to Portal as Guest
+    </a>
+  </div>
+
+  <script src="auth.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const roleTabs = document.querySelectorAll(".role-tab-btn");
+      const emailInput = document.getElementById("emailInput");
+      const passwordInput = document.getElementById("passwordInput");
+      const submitBtn = document.getElementById("submitLoginBtn");
+      const loginForm = document.getElementById("loginForm");
+
+      let currentRole = "student";
+
+      const roleDefaults = {
+        admin: {
+          email: "admin@university.edu",
+          btnText: "Sign In as Administrator",
+          desc: "Full administrative access: User management, job moderation, ERP settings"
+        },
+        student: {
+          email: "student@university.edu",
+          btnText: "Sign In as Student",
+          desc: "Access job board, apply with 1-click, track applications, view student records"
+        },
+        alumni: {
+          email: "alumni@university.edu",
+          btnText: "Sign In as Alumni / Recruiter",
+          desc: "Post jobs, refer candidates, review applicants, connect with students"
+        }
+      };
+
+      roleTabs.forEach(tab => {
+        tab.addEventListener("click", () => {
+          roleTabs.forEach(t => t.classList.remove("active"));
+          tab.classList.add("active");
+          currentRole = tab.dataset.role;
+
+          emailInput.value = roleDefaults[currentRole].email;
+          passwordInput.value = "university2024";
+          submitBtn.textContent = roleDefaults[currentRole].btnText;
+        });
+      });
+
+      // Handle standard form submit
+      loginForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        loginUser(currentRole);
+        window.location.href = "index.html";
+      });
+
+      // Handle 1-click instant role buttons
+      document.getElementById("quickAdminBtn").addEventListener("click", () => {
+        loginUser("admin");
+        window.location.href = "index.html";
+      });
+
+      document.getElementById("quickStudentBtn").addEventListener("click", () => {
+        loginUser("student");
+        window.location.href = "index.html";
+      });
+
+      document.getElementById("quickAlumniBtn").addEventListener("click", () => {
+        loginUser("alumni");
+        window.location.href = "index.html";
+      });
+    });
+  </script>
+</body>
+</html>
