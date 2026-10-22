@@ -63,10 +63,18 @@ document.addEventListener("DOMContentLoaded", () => {
   const helloBtn = document.getElementById("helloBtn");
   const erpSection = document.getElementById("erpSection");
   const tableBody = document.getElementById("studentTableBody");
-  const searchInput = document.getElementById("searchInput");
   const recordCount = document.getElementById("recordCount");
   const cellAddress = document.querySelector(".cell-address");
   const exportBtn = document.getElementById("exportBtn");
+
+  // Filter elements
+  const filterToggleBtn = document.getElementById("filterToggleBtn");
+  const filterPanel = document.getElementById("filterPanel");
+  const filterRollNo = document.getElementById("filterRollNo");
+  const filterName = document.getElementById("filterName");
+  const filterDepartment = document.getElementById("filterDepartment");
+  const resetFilterBtn = document.getElementById("resetFilterBtn");
+  const searchInput = document.getElementById("searchInput");
 
   function getStatusClass(status) {
     if (status === "Active") return "active";
@@ -74,7 +82,7 @@ document.addEventListener("DOMContentLoaded", () => {
     return "on-leave";
   }
 
-  // Render all records directly in a single sheet
+  // Fast rendering using DocumentFragment
   function renderAllRows(records) {
     tableBody.innerHTML = "";
     const totalRecords = records.length;
@@ -84,15 +92,14 @@ document.addEventListener("DOMContentLoaded", () => {
         <tr>
           <td class="row-num">-</td>
           <td colspan="5" style="text-align: center; color: #94a3b8; padding: 26px;">
-            No student records matching your search.
+            No student records matching your filter criteria.
           </td>
         </tr>
       `;
-      recordCount.textContent = "0 students found";
+      recordCount.textContent = "Filtered: 0 of 500 students";
       return;
     }
 
-    // Use DocumentFragment for super fast DOM rendering of all 500 rows
     const fragment = document.createDocumentFragment();
 
     records.forEach((student, index) => {
@@ -113,10 +120,64 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     tableBody.appendChild(fragment);
-    recordCount.textContent = `Ready | ${totalRecords} students loaded`;
+
+    if (totalRecords === allStudents.length) {
+      recordCount.textContent = `Ready | 500 students loaded`;
+    } else {
+      recordCount.textContent = `Filtered: ${totalRecords} of 500 students`;
+    }
   }
 
-  // Toggle ERP Spreadsheet
+  // Combined filter logic (Roll No, Name, Department, Quick Search)
+  function applyFilters() {
+    const rollQuery = filterRollNo.value.toLowerCase().trim();
+    const nameQuery = filterName.value.toLowerCase().trim();
+    const deptQuery = filterDepartment.value.trim();
+    const searchQuery = searchInput.value.toLowerCase().trim();
+
+    filteredStudents = allStudents.filter(student => {
+      const matchesRoll = !rollQuery || student.rollNo.toLowerCase().includes(rollQuery);
+      const matchesName = !nameQuery || student.name.toLowerCase().includes(nameQuery);
+      const matchesDept = !deptQuery || student.department === deptQuery;
+      const matchesSearch = !searchQuery ||
+        student.name.toLowerCase().includes(searchQuery) ||
+        student.rollNo.toLowerCase().includes(searchQuery) ||
+        student.department.toLowerCase().includes(searchQuery) ||
+        student.semester.toLowerCase().includes(searchQuery) ||
+        student.status.toLowerCase().includes(searchQuery);
+
+      return matchesRoll && matchesName && matchesDept && matchesSearch;
+    });
+
+    renderAllRows(filteredStudents);
+  }
+
+  // Toggle filter panel visibility
+  filterToggleBtn.addEventListener("click", () => {
+    filterPanel.classList.toggle("closed");
+    filterToggleBtn.classList.toggle("active");
+    if (!filterPanel.classList.contains("closed")) {
+      filterRollNo.focus();
+    }
+  });
+
+  // Filter input event listeners
+  filterRollNo.addEventListener("input", applyFilters);
+  filterName.addEventListener("input", applyFilters);
+  filterDepartment.addEventListener("change", applyFilters);
+  searchInput.addEventListener("input", applyFilters);
+
+  // Reset filter button
+  resetFilterBtn.addEventListener("click", () => {
+    filterRollNo.value = "";
+    filterName.value = "";
+    filterDepartment.value = "";
+    searchInput.value = "";
+    filteredStudents = [...allStudents];
+    renderAllRows(filteredStudents);
+  });
+
+  // Toggle ERP Sheet
   helloBtn.addEventListener("click", () => {
     const isHidden = erpSection.classList.contains("hidden");
     if (isHidden) {
@@ -133,19 +194,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Search filter across all 500 students in real time
-  searchInput.addEventListener("input", (e) => {
-    const query = e.target.value.toLowerCase().trim();
-    filteredStudents = allStudents.filter(student =>
-      student.name.toLowerCase().includes(query) ||
-      student.rollNo.toLowerCase().includes(query) ||
-      student.department.toLowerCase().includes(query) ||
-      student.semester.toLowerCase().includes(query) ||
-      student.status.toLowerCase().includes(query)
-    );
-    renderAllRows(filteredStudents);
-  });
-
   // Interactive Excel cell click
   tableBody.addEventListener("click", (e) => {
     const cell = e.target.closest("td");
@@ -155,7 +203,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Export all records to CSV
+  // Export to CSV
   exportBtn.addEventListener("click", () => {
     const headers = ["Roll No", "Student Name", "Department", "Semester", "Status"];
     const rows = filteredStudents.map(s => [
@@ -171,12 +219,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const url = URL.createObjectURL(blob);
     const link = document.createElement("a");
     link.setAttribute("href", url);
-    link.setAttribute("download", "Student_ERP_Master_List_500.csv");
+    link.setAttribute("download", "Student_ERP_Filtered_List.csv");
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
   });
 
-  // Initial render of all 500 students in one single sheet
+  // Initial render
   renderAllRows(allStudents);
 });

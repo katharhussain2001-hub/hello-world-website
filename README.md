@@ -5,16 +5,16 @@ A modern web application featuring a centered "Hello World" button that expands 
 ## Features
 
 - **Hello World Toggle**: Smoothly reveals or hides the ERP spreadsheet.
+- **⚡ Dedicated Filter Controls**:
+  - Filter by **Roll No** (e.g. `24CS`, `005`).
+  - Filter by **Name** (e.g. `Aarav`, `Sharma`).
+  - Filter by **Department** dropdown (Computer Science, Information Technology, Electronics & Communication, Mechanical, Electrical).
+  - One-click **Clear Filters** button.
 - **Single Continuous Sheet**:
-  - All 500 student records rendered on a single scrollable sheet.
+  - All 500 student records loaded on a single scrollable sheet.
   - Sticky column headers (`A`, `B`, `C`, `D`, `E`) and row numbers (`1` to `501`) that stay pinned as you scroll.
-- **500 Student Records**:
-  - 100 students each across 5 departments: Computer Science, Information Technology, Electronics & Communication, Mechanical Engineering, and Electrical & Electronics.
-  - Formatted Roll Numbers (`24CS001` - `24CS100`, `24IT001` - `24IT100`, etc.).
-  - Semesters (`2nd`, `4th`, `6th`, `8th`) and statuses (`Active`, `Inactive`, `On Leave`).
-- **Interactive Tools**:
-  - Live search across all 500 students in real time via the formula bar.
-  - **Export to CSV**: Click the "📥 Export CSV" button to download all student records directly into Excel.
+- **Export to CSV**:
+  - Download all or currently filtered student records directly as a `.csv` spreadsheet file for Microsoft Excel.
 
 ## Files
 

@@ -24,6 +24,9 @@
             <span class="excel-title">Student_ERP_Master_List_500.xlsx — Excel</span>
           </div>
           <div class="excel-actions">
+            <button id="filterToggleBtn" class="btn-filter" type="button" title="Open Filter Options">
+              ⚡ Filter
+            </button>
             <button id="exportBtn" class="btn-export" type="button" title="Download as CSV / Excel">
               📥 Export CSV
             </button>
@@ -35,11 +38,44 @@
           </div>
         </div>
 
-        <!-- Excel Formula / Search Bar -->
+        <!-- Filter Panel -->
+        <div id="filterPanel" class="filter-panel">
+          <div class="filter-title">
+            <span>Filter Criteria:</span>
+          </div>
+          <div class="filter-inputs">
+            <div class="filter-field">
+              <label for="filterRollNo">Roll No</label>
+              <input type="text" id="filterRollNo" placeholder="e.g. 24CS, 005..." />
+            </div>
+            <div class="filter-field">
+              <label for="filterName">Name</label>
+              <input type="text" id="filterName" placeholder="e.g. Aarav, Sharma..." />
+            </div>
+            <div class="filter-field">
+              <label for="filterDepartment">Department</label>
+              <select id="filterDepartment">
+                <option value="">All Departments</option>
+                <option value="Computer Science & Engineering">Computer Science & Engineering</option>
+                <option value="Information Technology">Information Technology</option>
+                <option value="Electronics & Communication">Electronics & Communication</option>
+                <option value="Mechanical Engineering">Mechanical Engineering</option>
+                <option value="Electrical & Electronics">Electrical & Electronics</option>
+              </select>
+            </div>
+            <div class="filter-actions">
+              <button id="resetFilterBtn" class="btn-reset-filter" type="button" title="Clear all filters">
+                Clear Filters
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Excel Formula Bar -->
         <div class="excel-bar">
           <div class="cell-address">A1</div>
           <div class="fx-label">fx</div>
-          <input type="text" id="searchInput" class="formula-input" placeholder="Search across 500 students by name, roll no, or department..." />
+          <input type="text" id="searchInput" class="formula-input" placeholder="Quick search any keyword across the sheet..." />
         </div>
 
         <!-- Single Sheet Table Container -->
