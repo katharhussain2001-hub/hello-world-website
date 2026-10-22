@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Student & Alumni ERP Portal (1000 Alumni Records)</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="page-container">
+    <!-- Top Navigation Bar & Return Link -->
+    <div style="width: 100%; display: flex; justify-content: space-between; align-items: center; margin-bottom: -10px;">
+      <a href="index.html" class="btn-action" style="text-decoration: none; display: inline-flex; align-items: center; gap: 8px; font-size: 0.9rem; padding: 8px 18px; border-radius: 9999px; background: rgba(30, 41, 59, 0.9); border: 1px solid #475569; color: #f8fafc;">
+        🏠 ← Back to Campus Network (Home, Jobs, Messages)
+      </a>
+      <span style="color: #94a3b8; font-size: 0.85rem;">University Master ERP System</span>
+    </div>
+
+    <!-- Top Header & Navigation Buttons -->
+    <header class="header-section">
+      <h1 class="portal-title">University ERP & Alumni Portal</h1>
+      <p class="portal-subtitle">Access live student records, 1,000+ alumni career placements, and convocation highlights</p>
+      
+      <div class="nav-button-group">
+        <button id="studentBtn" class="nav-btn active" type="button">
+          🎓 Student Details
+        </button>
+        <button id="alumniBtn" class="nav-btn" type="button">
+          💼 Alumni Details
+        </button>
+      </div>
+    </header>
+
+    <!-- SECTION 1: STUDENT ERP SHEET (500 RECORDS) -->
+    <section id="studentSection" class="content-section">
+      <div class="excel-card">
+        <!-- Excel Title Bar -->
+        <div class="excel-titlebar">
+          <div class="excel-brand">
+            <span class="excel-icon">X</span>
+            <span class="excel-title">Student_ERP_Master_List_500.xlsx — Excel</span>
+          </div>
+          <div class="excel-actions">
+            <button id="studentFilterToggle" class="btn-action" type="button" title="Toggle Filters">
+              ⚡ Filter
+            </button>
+            <button id="studentExportBtn" class="btn-action" type="button" title="Download CSV">
+              📥 Export CSV
+            </button>
+            <div class="window-controls">
+              <span class="dot"></span>
+              <span class="dot"></span>
+              <span class="dot"></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Student Filter Panel -->
+        <div id="studentFilterPanel" class="filter-panel">
+          <div class="filter-title">Filter Student Records:</div>
+          <div class="filter-inputs">
+            <div class="filter-field">
+              <label for="studentFilterRoll">Roll No</label>
+              <input type="text" id="studentFilterRoll" placeholder="e.g. 24CS, 005..." />
+            </div>
+            <div class="filter-field">
+              <label for="studentFilterName">Name</label>
+              <input type="text" id="studentFilterName" placeholder="e.g. Aarav, Sharma..." />
+            </div>
+            <div class="filter-field">
+              <label for="studentFilterDept">Department</label>
+              <select id="studentFilterDept">
+                <option value="">All Departments</option>
+                <option value="Computer Science & Engineering">Computer Science & Engineering</option>
+                <option value="Information Technology">Information Technology</option>
+                <option value="Electronics & Communication">Electronics & Communication</option>
+                <option value="Mechanical Engineering">Mechanical Engineering</option>
+                <option value="Electrical & Electronics">Electrical & Electronics</option>
+              </select>
+            </div>
+            <div class="filter-actions">
+              <button id="studentResetBtn" class="btn-reset" type="button">Reset Filters</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Formula Bar -->
+        <div class="excel-bar">
+          <div class="cell-address">A1</div>
+          <div class="fx-label">fx</div>
+          <input type="text" id="studentSearchInput" class="formula-input" placeholder="Quick keyword search across student records..." />
+        </div>
+
+        <!-- Student Table -->
+        <div class="table-scroll">
+          <table class="excel-table">
+            <thead>
+              <tr class="col-headers">
+                <th class="corner-header"></th>
+                <th>A</th>
+                <th>B</th>
+                <th>C</th>
+                <th>D</th>
+                <th>E</th>
+              </tr>
+              <tr class="data-headers">
+                <th class="row-num">1</th>
+                <th>Roll No</th>
+                <th>Student Name</th>
+                <th>Department</th>
+                <th>Semester</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="studentTableBody">
+              <!-- Rendered via script.js -->
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Excel Footer -->
+        <div class="excel-footer">
+          <div class="sheet-tabs">
+            <button class="sheet-tab active" type="button">Sheet1 (500 Students)</button>
+            <button class="sheet-tab" type="button">+</button>
+          </div>
+          <div class="footer-stats" id="studentRecordCount">Ready | 500 students loaded</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2: ALUMNI DETAILS SHEET (1000 RECORDS) -->
+    <section id="alumniSection" class="content-section hidden">
+      <div class="excel-card">
+        <!-- Excel Title Bar -->
+        <div class="excel-titlebar alumni-bar">
+          <div class="excel-brand">
+            <span class="excel-icon alumni-icon">A</span>
+            <span class="excel-title">Alumni_Directory_1000.xlsx — Excel</span>
+          </div>
+          <div class="excel-actions">
+            <button id="alumniFilterToggle" class="btn-action" type="button" title="Toggle Filters">
+              ⚡ Filter
+            </button>
+            <button id="alumniExportBtn" class="btn-action" type="button" title="Download CSV">
+              📥 Export CSV
+            </button>
+            <div class="window-controls">
+              <span class="dot"></span>
+              <span class="dot"></span>
+              <span class="dot"></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Alumni Filter Panel -->
+        <div id="alumniFilterPanel" class="filter-panel">
+          <div class="filter-title">Filter Alumni Records:</div>
+          <div class="filter-inputs">
+            <div class="filter-field">
+              <label for="alumniFilterName">Alumni Name</label>
+              <input type="text" id="alumniFilterName" placeholder="e.g. Aarav, Priya, Sharma..." />
+            </div>
+            <div class="filter-field">
+              <label for="alumniFilterDept">Department</label>
+              <select id="alumniFilterDept">
+                <option value="">All Departments</option>
+                <option value="Computer Science & Engineering">Computer Science & Engineering</option>
+                <option value="Information Technology">Information Technology</option>
+                <option value="Electronics & Communication">Electronics & Communication</option>
+                <option value="Mechanical Engineering">Mechanical Engineering</option>
+                <option value="Electrical & Electronics">Electrical & Electronics</option>
+              </select>
+            </div>
+            <div class="filter-field">
+              <label for="alumniFilterDesignation">Current Designation / Company</label>
+              <input type="text" id="alumniFilterDesignation" placeholder="e.g. Google, Architect, AI, Tesla..." />
+            </div>
+            <div class="filter-actions">
+              <button id="alumniResetBtn" class="btn-reset" type="button">Reset Filters</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Formula Bar -->
+        <div class="excel-bar">
+          <div class="cell-address">A1</div>
+          <div class="fx-label">fx</div>
+          <input type="text" id="alumniSearchInput" class="formula-input" placeholder="Quick keyword search across 1,000 alumni records..." />
+        </div>
+
+        <!-- Alumni Table -->
+        <div class="table-scroll">
+          <table class="excel-table">
+            <thead>
+              <tr class="col-headers">
+                <th class="corner-header"></th>
+                <th>A</th>
+                <th>B</th>
+                <th>C</th>
+                <th>D</th>
+                <th>E</th>
+              </tr>
+              <tr class="data-headers">
+                <th class="row-num">1</th>
+                <th>Alumni ID</th>
+                <th>Alumni Name</th>
+                <th>Department</th>
+                <th>Current Designation</th>
+                <th>Monthly Salary</th>
+              </tr>
+            </thead>
+            <tbody id="alumniTableBody">
+              <!-- All 1000 rows rendered via script.js -->
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Excel Footer -->
+        <div class="excel-footer">
+          <div class="sheet-tabs">
+            <button class="sheet-tab active" type="button">Alumni_Directory (1000)</button>
+            <button class="sheet-tab" type="button">+</button>
+          </div>
+          <div class="footer-stats" id="alumniRecordCount">Ready | 1,000 alumni loaded</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 3: HAPPY EXIT STUDENTS GALLERY -->
+    <section class="gallery-section">
+      <div class="gallery-header">
+        <div class="gallery-badge">🎓 Convocation & Placements</div>
+        <h2 class="gallery-title">Happy Exit Students & Proud Graduates</h2>
+        <p class="gallery-subtitle">Featured in our 1,000 Alumni Directory above — celebrating their global industry placements</p>
+      </div>
+
+      <div class="gallery-grid" id="exitStudentsGallery">
+        <!-- Rendered dynamically via script.js -->
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

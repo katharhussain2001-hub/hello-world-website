@@ -3,236 +3,508 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Student & Alumni ERP Portal (1000 Alumni Records)</title>
-  <link rel="stylesheet" href="style.css" />
+  <title>UniConnect — Campus & Alumni Network</title>
+  <link rel="stylesheet" href="home.css" />
 </head>
 <body>
-  <main class="page-container">
-    <!-- Top Header & Navigation Buttons -->
-    <header class="header-section">
-      <h1 class="portal-title">University ERP & Alumni Portal</h1>
-      <p class="portal-subtitle">Access live student records, 1,000+ alumni career placements, and convocation highlights</p>
-      
-      <div class="nav-button-group">
-        <button id="studentBtn" class="nav-btn active" type="button">
-          🎓 Student Details
-        </button>
-        <button id="alumniBtn" class="nav-btn" type="button">
-          💼 Alumni Details
-        </button>
+  <!-- TOP NAVIGATION BAR -->
+  <header class="navbar">
+    <div class="nav-left">
+      <a href="index.html" class="brand-logo">
+        <span class="logo-badge">🎓</span>
+        <span>UniConnect</span>
+      </a>
+      <div class="search-box">
+        <span class="search-icon">🔍</span>
+        <input type="text" placeholder="Search students, alumni, jobs, companies..." />
       </div>
-    </header>
+    </div>
 
-    <!-- SECTION 1: STUDENT ERP SHEET (500 RECORDS) -->
-    <section id="studentSection" class="content-section">
-      <div class="excel-card">
-        <!-- Excel Title Bar -->
-        <div class="excel-titlebar">
-          <div class="excel-brand">
-            <span class="excel-icon">X</span>
-            <span class="excel-title">Student_ERP_Master_List_500.xlsx — Excel</span>
-          </div>
-          <div class="excel-actions">
-            <button id="studentFilterToggle" class="btn-action" type="button" title="Toggle Filters">
-              ⚡ Filter
-            </button>
-            <button id="studentExportBtn" class="btn-action" type="button" title="Download CSV">
-              📥 Export CSV
-            </button>
-            <div class="window-controls">
-              <span class="dot"></span>
-              <span class="dot"></span>
-              <span class="dot"></span>
+    <!-- 5 REQUIRED NAV BUTTONS -->
+    <nav class="nav-center">
+      <button class="nav-item active" data-tab="home" type="button">
+        <span class="icon">🏠</span>
+        <span>Home</span>
+      </button>
+      <button class="nav-item" data-tab="jobs" type="button">
+        <span class="icon">💼</span>
+        <span>Job Posting</span>
+      </button>
+      <button class="nav-item" data-tab="messaging" type="button">
+        <span class="icon">💬</span>
+        <span>Messaging</span>
+        <span class="nav-badge">3</span>
+      </button>
+      <button class="nav-item" data-tab="notification" type="button">
+        <span class="icon">🔔</span>
+        <span>Notification</span>
+        <span class="nav-badge">5</span>
+      </button>
+      <button class="nav-item" data-tab="me" type="button">
+        <span class="icon">👤</span>
+        <span>Me</span>
+      </button>
+    </nav>
+
+    <!-- RIGHT ACTION: JUMP TO THE ERP SPREADSHEET PORTAL -->
+    <div class="nav-right">
+      <a href="erp.html" class="btn-erp-portal" title="Open Master Student & 1,000 Alumni ERP Sheets">
+        📊 Student & Alumni ERP Portal →
+      </a>
+    </div>
+  </header>
+
+  <!-- MAIN APP CONTAINER -->
+  <main class="main-content">
+
+    <!-- 1. HOME TAB VIEW -->
+    <section id="homeView" class="tab-view active">
+      <div class="home-grid">
+        <!-- Left Sidebar: Profile Widget -->
+        <aside class="left-col">
+          <div class="card profile-card">
+            <div class="profile-banner"></div>
+            <div class="profile-avatar-wrap">
+              <span>👨‍💻</span>
+            </div>
+            <div class="profile-body">
+              <h2 class="user-name">Kathar Hussain</h2>
+              <p class="user-role">Computer Science & Engineering • Class of 2024</p>
+              
+              <div class="profile-stats">
+                <div class="stat-row">
+                  <span>Profile Viewers</span>
+                  <span class="stat-value">384</span>
+                </div>
+                <div class="stat-row">
+                  <span>Post Impressions</span>
+                  <span class="stat-value">1,420</span>
+                </div>
+                <div class="stat-row">
+                  <span>Campus Network</span>
+                  <span class="stat-value">500+ Peers</span>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
 
-        <!-- Student Filter Panel -->
-        <div id="studentFilterPanel" class="filter-panel">
-          <div class="filter-title">Filter Student Records:</div>
-          <div class="filter-inputs">
-            <div class="filter-field">
-              <label for="studentFilterRoll">Roll No</label>
-              <input type="text" id="studentFilterRoll" placeholder="e.g. 24CS, 005..." />
-            </div>
-            <div class="filter-field">
-              <label for="studentFilterName">Name</label>
-              <input type="text" id="studentFilterName" placeholder="e.g. Aarav, Sharma..." />
-            </div>
-            <div class="filter-field">
-              <label for="studentFilterDept">Department</label>
-              <select id="studentFilterDept">
-                <option value="">All Departments</option>
-                <option value="Computer Science & Engineering">Computer Science & Engineering</option>
-                <option value="Information Technology">Information Technology</option>
-                <option value="Electronics & Communication">Electronics & Communication</option>
-                <option value="Mechanical Engineering">Mechanical Engineering</option>
-                <option value="Electrical & Electronics">Electrical & Electronics</option>
-              </select>
-            </div>
-            <div class="filter-actions">
-              <button id="studentResetBtn" class="btn-reset" type="button">Reset Filters</button>
+          <!-- Quick Navigation Card -->
+          <div class="card" style="padding: 16px;">
+            <h3 style="font-size: 0.88rem; font-weight: 700; color: #9ca3af; text-transform: uppercase; margin-bottom: 10px;">Quick Directory</h3>
+            <div style="display: flex; flex-direction: column; gap: 8px;">
+              <a href="erp.html" style="text-decoration: none; color: #3b82f6; font-size: 0.85rem; font-weight: 600;">📑 500 Student Records Sheet</a>
+              <a href="erp.html" style="text-decoration: none; color: #107c41; font-size: 0.85rem; font-weight: 600;">💼 1,000 Alumni Career Records</a>
+              <a href="erp.html" style="text-decoration: none; color: #f59e0b; font-size: 0.85rem; font-weight: 600;">🎓 Convocation Gallery</a>
             </div>
           </div>
-        </div>
+        </aside>
 
-        <!-- Formula Bar -->
-        <div class="excel-bar">
-          <div class="cell-address">A1</div>
-          <div class="fx-label">fx</div>
-          <input type="text" id="studentSearchInput" class="formula-input" placeholder="Quick keyword search across student records..." />
-        </div>
-
-        <!-- Student Table -->
-        <div class="table-scroll">
-          <table class="excel-table">
-            <thead>
-              <tr class="col-headers">
-                <th class="corner-header"></th>
-                <th>A</th>
-                <th>B</th>
-                <th>C</th>
-                <th>D</th>
-                <th>E</th>
-              </tr>
-              <tr class="data-headers">
-                <th class="row-num">1</th>
-                <th>Roll No</th>
-                <th>Student Name</th>
-                <th>Department</th>
-                <th>Semester</th>
-                <th>Status</th>
-              </tr>
-            </thead>
-            <tbody id="studentTableBody">
-              <!-- Rendered via script.js -->
-            </tbody>
-          </table>
-        </div>
-
-        <!-- Excel Footer -->
-        <div class="excel-footer">
-          <div class="sheet-tabs">
-            <button class="sheet-tab active" type="button">Sheet1 (500 Students)</button>
-            <button class="sheet-tab" type="button">+</button>
+        <!-- Center Feed -->
+        <section class="feed-col">
+          <!-- Create Post Card -->
+          <div class="card create-post-card">
+            <div class="create-post-top">
+              <span style="font-size: 2rem;">👨‍💻</span>
+              <div class="input-post-mock">Start a post, share placement news, or celebrate a milestone...</div>
+            </div>
+            <div class="create-post-actions">
+              <button class="post-action-btn" type="button">📷 Photo</button>
+              <button class="post-action-btn" type="button">🎥 Video</button>
+              <button class="post-action-btn" type="button">💼 Job Referral</button>
+              <button class="post-action-btn" type="button">✍ Article</button>
+            </div>
           </div>
-          <div class="footer-stats" id="studentRecordCount">Ready | 500 students loaded</div>
+
+          <!-- Posts Feed -->
+          <div id="postsFeed">
+            <!-- Post 1: Aarav Sharma -->
+            <article class="card post-card">
+              <div class="post-header">
+                <span class="post-avatar">👨‍🎓</span>
+                <div>
+                  <div class="post-author-name">Aarav Sharma ★ Grad 2024</div>
+                  <div class="post-author-headline">Software Engineer @ Google • Computer Science & Engineering</div>
+                  <div class="post-time">2 hours ago • 🌐</div>
+                </div>
+              </div>
+              <div class="post-content">
+                🎉 Thrilled to announce that I have officially joined <strong>Google</strong> as a Software Engineer! 
+                Huge thanks to my professors, mentors, and the university placement cell. To all juniors currently preparing for campus interviews, stay persistent on Data Structures & Systems fundamentals!
+              </div>
+              <div class="post-actions-bar">
+                <button class="btn-interaction btn-like" type="button">👍 Like (<span class="like-count">142</span>)</button>
+                <button class="btn-interaction" type="button">💬 Comment (28)</button>
+                <button class="btn-interaction" type="button">↗ Repost</button>
+                <button class="btn-interaction" type="button">✈ Send</button>
+              </div>
+            </article>
+
+            <!-- Post 2: Placement Cell Announcement -->
+            <article class="card post-card">
+              <div class="post-header">
+                <span class="post-avatar">🏛</span>
+                <div>
+                  <div class="post-author-name">University Career & Placement Cell</div>
+                  <div class="post-author-headline">Official University Announcements</div>
+                  <div class="post-time">5 hours ago • 🌐</div>
+                </div>
+              </div>
+              <div class="post-content">
+                📢 <strong>Historic Placement Milestone Reached!</strong><br />
+                We are proud to share that over <strong>1,000 Alumni</strong> are now placed across global leaders including Google, Microsoft, Amazon, Tesla, Boeing, and Meta!
+                <br /><br />
+                Students can view the complete live directory with designation and salary breakdowns on our master ERP sheet:
+                <div style="margin-top: 10px;">
+                  <a href="erp.html" style="color: #60a5fa; text-decoration: underline; font-weight: 600;">
+                    👉 Open Student & 1,000 Alumni ERP Directory
+                  </a>
+                </div>
+              </div>
+              <div class="post-actions-bar">
+                <button class="btn-interaction btn-like" type="button">👍 Like (<span class="like-count">389</span>)</button>
+                <button class="btn-interaction" type="button">💬 Comment (45)</button>
+                <button class="btn-interaction" type="button">↗ Repost</button>
+                <button class="btn-interaction" type="button">✈ Send</button>
+              </div>
+            </article>
+
+            <!-- Post 3: Priya Iyer -->
+            <article class="card post-card">
+              <div class="post-header">
+                <span class="post-avatar">👩‍🎓</span>
+                <div>
+                  <div class="post-author-name">Priya Iyer ★ Grad 2024</div>
+                  <div class="post-author-headline">Firmware Engineer @ Microsoft • Electronics & Communication</div>
+                  <div class="post-time">1 day ago • 🌐</div>
+                </div>
+              </div>
+              <div class="post-content">
+                Excited to start our device firmware sprint at Microsoft! Looking forward to mentoring 3rd and 4th-year students who are aiming for hardware and embedded systems roles. Feel free to connect via the <strong>Messaging</strong> tab!
+              </div>
+              <div class="post-actions-bar">
+                <button class="btn-interaction btn-like" type="button">👍 Like (<span class="like-count">98</span>)</button>
+                <button class="btn-interaction" type="button">💬 Comment (14)</button>
+                <button class="btn-interaction" type="button">↗ Repost</button>
+                <button class="btn-interaction" type="button">✈ Send</button>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <!-- Right Sidebar -->
+        <aside class="right-col">
+          <!-- ERP Quick Widget -->
+          <div class="card" style="padding: 18px; border-left: 4px solid #107c41;">
+            <div style="font-weight: 700; color: #f9fafb; font-size: 0.95rem; margin-bottom: 6px;">
+              📊 University Master ERP
+            </div>
+            <p style="font-size: 0.8rem; color: #9ca3af; margin-bottom: 12px;">
+              Interactive single-sheet with 500 current students and 1,000 alumni career records with monthly salaries.
+            </p>
+            <a href="erp.html" class="btn-erp-portal" style="width: 100%; justify-content: center; font-size: 0.82rem;">
+              Open Master ERP Sheet →
+            </a>
+          </div>
+
+          <!-- Alumni News & Openings Widget -->
+          <div class="card">
+            <div class="widget-title">
+              <span>Alumni Hiring Now</span>
+              <span style="font-size: 0.75rem; color: #3b82f6;">Top Roles</span>
+            </div>
+            <div class="widget-list">
+              <div class="widget-item">
+                <a href="#" class="widget-item-title">Google — SWE II</a>
+                <span class="widget-item-desc">Referred by Aarav Sharma • $12,500/mo</span>
+              </div>
+              <div class="widget-item">
+                <a href="#" class="widget-item-title">Amazon AWS — Cloud Architect</a>
+                <span class="widget-item-desc">Referred by Rohan Verma • $11,800/mo</span>
+              </div>
+              <div class="widget-item">
+                <a href="#" class="widget-item-title">Tesla — Battery Engineer</a>
+                <span class="widget-item-desc">Referred by Sneha Kulkarni • $13,000/mo</span>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- 2. JOB POSTING TAB VIEW -->
+    <section id="jobsView" class="tab-view">
+      <div class="jobs-container">
+        <div class="jobs-header-card">
+          <h2 style="font-size: 1.6rem; font-weight: 800; color: #ffffff;">💼 University Alumni & Partner Job Board</h2>
+          <p style="color: #bfdbfe; font-size: 0.9rem; margin-top: 6px;">
+            Exclusive opportunities posted directly by our 1,000+ alumni network and hiring partners
+          </p>
+        </div>
+
+        <!-- Job Cards List -->
+        <div class="jobs-list">
+          <!-- Job 1 -->
+          <div class="job-card">
+            <div>
+              <div class="job-role">Senior Software Engineer</div>
+              <div class="job-company">Google • Mountain View, CA (Hybrid / Remote)</div>
+              <div class="job-meta">
+                <span>Alumni Referral: Aarav Sharma</span>
+                <span>• Full-time</span>
+                <span>• Department: CSE / IT</span>
+              </div>
+            </div>
+            <div style="text-align: right; display: flex; flex-direction: column; align-items: flex-end; gap: 8px;">
+              <span class="job-salary-badge">$12,500 / month</span>
+              <button class="btn-apply" type="button">Easy Apply</button>
+            </div>
+          </div>
+
+          <!-- Job 2 -->
+          <div class="job-card">
+            <div>
+              <div class="job-role">Cloud Solutions Architect</div>
+              <div class="job-company">Amazon AWS • Seattle, WA</div>
+              <div class="job-meta">
+                <span>Alumni Referral: Rohan Verma</span>
+                <span>• Full-time</span>
+                <span>• Department: IT / CSE</span>
+              </div>
+            </div>
+            <div style="text-align: right; display: flex; flex-direction: column; align-items: flex-end; gap: 8px;">
+              <span class="job-salary-badge">$11,800 / month</span>
+              <button class="btn-apply" type="button">Easy Apply</button>
+            </div>
+          </div>
+
+          <!-- Job 3 -->
+          <div class="job-card">
+            <div>
+              <div class="job-role">Staff AI Research Engineer</div>
+              <div class="job-company">Meta AI • Menlo Park, CA</div>
+              <div class="job-meta">
+                <span>Alumni Referral: Ananya Patel</span>
+                <span>• Full-time</span>
+                <span>• Department: CSE / AI</span>
+              </div>
+            </div>
+            <div style="text-align: right; display: flex; flex-direction: column; align-items: flex-end; gap: 8px;">
+              <span class="job-salary-badge">$14,000 / month</span>
+              <button class="btn-apply" type="button">Easy Apply</button>
+            </div>
+          </div>
+
+          <!-- Job 4 -->
+          <div class="job-card">
+            <div>
+              <div class="job-role">Battery Systems Engineer</div>
+              <div class="job-company">Tesla • Austin, TX</div>
+              <div class="job-meta">
+                <span>Alumni Referral: Sneha Kulkarni</span>
+                <span>• Full-time</span>
+                <span>• Department: EEE / ME</span>
+              </div>
+            </div>
+            <div style="text-align: right; display: flex; flex-direction: column; align-items: flex-end; gap: 8px;">
+              <span class="job-salary-badge">$13,000 / month</span>
+              <button class="btn-apply" type="button">Easy Apply</button>
+            </div>
+          </div>
+
+          <!-- Job 5 -->
+          <div class="job-card">
+            <div>
+              <div class="job-role">Firmware Engineer</div>
+              <div class="job-company">Microsoft • Redmond, WA</div>
+              <div class="job-meta">
+                <span>Alumni Referral: Priya Iyer</span>
+                <span>• Full-time</span>
+                <span>• Department: ECE / EE</span>
+              </div>
+            </div>
+            <div style="text-align: right; display: flex; flex-direction: column; align-items: flex-end; gap: 8px;">
+              <span class="job-salary-badge">$12,200 / month</span>
+              <button class="btn-apply" type="button">Easy Apply</button>
+            </div>
+          </div>
+
+          <!-- Job 6 -->
+          <div class="job-card">
+            <div>
+              <div class="job-role">Aerodynamics Consultant</div>
+              <div class="job-company">Boeing • Seattle, WA</div>
+              <div class="job-meta">
+                <span>Alumni Referral: Vikram Singh</span>
+                <span>• Full-time</span>
+                <span>• Department: ME</span>
+              </div>
+            </div>
+            <div style="text-align: right; display: flex; flex-direction: column; align-items: flex-end; gap: 8px;">
+              <span class="job-salary-badge">$10,500 / month</span>
+              <button class="btn-apply" type="button">Easy Apply</button>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- SECTION 2: ALUMNI DETAILS SHEET (1000 RECORDS) -->
-    <section id="alumniSection" class="content-section hidden">
-      <div class="excel-card">
-        <!-- Excel Title Bar -->
-        <div class="excel-titlebar alumni-bar">
-          <div class="excel-brand">
-            <span class="excel-icon alumni-icon">A</span>
-            <span class="excel-title">Alumni_Directory_1000.xlsx — Excel</span>
+    <!-- 3. MESSAGING TAB VIEW -->
+    <section id="messagingView" class="tab-view">
+      <div class="messaging-wrapper">
+        <!-- Chat Users Sidebar -->
+        <div class="chat-sidebar">
+          <div style="padding: 16px; border-bottom: 1px solid #1f2937; font-weight: 700; color: #f9fafb;">
+            💬 Conversations
           </div>
-          <div class="excel-actions">
-            <button id="alumniFilterToggle" class="btn-action" type="button" title="Toggle Filters">
-              ⚡ Filter
-            </button>
-            <button id="alumniExportBtn" class="btn-action" type="button" title="Download CSV">
-              📥 Export CSV
-            </button>
-            <div class="window-controls">
-              <span class="dot"></span>
-              <span class="dot"></span>
-              <span class="dot"></span>
-            </div>
-          </div>
-        </div>
 
-        <!-- Alumni Filter Panel -->
-        <div id="alumniFilterPanel" class="filter-panel">
-          <div class="filter-title">Filter Alumni Records:</div>
-          <div class="filter-inputs">
-            <div class="filter-field">
-              <label for="alumniFilterName">Alumni Name</label>
-              <input type="text" id="alumniFilterName" placeholder="e.g. Aarav, Priya, Sharma..." />
+          <div class="chat-user-item active">
+            <span style="font-size: 1.8rem;">👨‍🎓</span>
+            <div style="flex: 1;">
+              <div class="chat-user-name" style="font-weight: 700; color: #f9fafb; font-size: 0.92rem;">Aarav Sharma</div>
+              <div style="font-size: 0.76rem; color: #9ca3af;">Google • SWE II</div>
+              <div style="font-size: 0.74rem; color: #3b82f6; margin-top: 2px;">"Happy to refer you for SWE roles!"</div>
             </div>
-            <div class="filter-field">
-              <label for="alumniFilterDept">Department</label>
-              <select id="alumniFilterDept">
-                <option value="">All Departments</option>
-                <option value="Computer Science & Engineering">Computer Science & Engineering</option>
-                <option value="Information Technology">Information Technology</option>
-                <option value="Electronics & Communication">Electronics & Communication</option>
-                <option value="Mechanical Engineering">Mechanical Engineering</option>
-                <option value="Electrical & Electronics">Electrical & Electronics</option>
-              </select>
+          </div>
+
+          <div class="chat-user-item">
+            <span style="font-size: 1.8rem;">👩‍🎓</span>
+            <div style="flex: 1;">
+              <div class="chat-user-name" style="font-weight: 700; color: #f9fafb; font-size: 0.92rem;">Priya Iyer</div>
+              <div style="font-size: 0.76rem; color: #9ca3af;">Microsoft • Firmware</div>
+              <div style="font-size: 0.74rem; color: #6b7280; margin-top: 2px;">"Let's connect this Friday."</div>
             </div>
-            <div class="filter-field">
-              <label for="alumniFilterDesignation">Current Designation / Company</label>
-              <input type="text" id="alumniFilterDesignation" placeholder="e.g. Google, Architect, AI, Tesla..." />
-            </div>
-            <div class="filter-actions">
-              <button id="alumniResetBtn" class="btn-reset" type="button">Reset Filters</button>
+          </div>
+
+          <div class="chat-user-item">
+            <span style="font-size: 1.8rem;">👨‍💼</span>
+            <div style="flex: 1;">
+              <div class="chat-user-name" style="font-weight: 700; color: #f9fafb; font-size: 0.92rem;">Campus Tech Recruiter</div>
+              <div style="font-size: 0.76rem; color: #9ca3af;">Amazon AWS Careers</div>
+              <div style="font-size: 0.74rem; color: #6b7280; margin-top: 2px;">"Your profile looks great!"</div>
             </div>
           </div>
         </div>
 
-        <!-- Formula Bar -->
-        <div class="excel-bar">
-          <div class="cell-address">A1</div>
-          <div class="fx-label">fx</div>
-          <input type="text" id="alumniSearchInput" class="formula-input" placeholder="Quick keyword search across 1,000 alumni records..." />
-        </div>
-
-        <!-- Alumni Table -->
-        <div class="table-scroll">
-          <table class="excel-table">
-            <thead>
-              <tr class="col-headers">
-                <th class="corner-header"></th>
-                <th>A</th>
-                <th>B</th>
-                <th>C</th>
-                <th>D</th>
-                <th>E</th>
-              </tr>
-              <tr class="data-headers">
-                <th class="row-num">1</th>
-                <th>Alumni ID</th>
-                <th>Alumni Name</th>
-                <th>Department</th>
-                <th>Current Designation</th>
-                <th>Monthly Salary</th>
-              </tr>
-            </thead>
-            <tbody id="alumniTableBody">
-              <!-- All 1000 rows rendered via script.js -->
-            </tbody>
-          </table>
-        </div>
-
-        <!-- Excel Footer -->
-        <div class="excel-footer">
-          <div class="sheet-tabs">
-            <button class="sheet-tab active" type="button">Alumni_Directory (1000)</button>
-            <button class="sheet-tab" type="button">+</button>
+        <!-- Chat Window -->
+        <div class="chat-window">
+          <div class="chat-header">
+            <span>🟢</span>
+            <span id="activeChatUser">Aarav Sharma</span>
+            <span style="font-size: 0.8rem; color: #9ca3af; font-weight: 400;">(Alumni Mentor • Google)</span>
           </div>
-          <div class="footer-stats" id="alumniRecordCount">Ready | 1,000 alumni loaded</div>
+
+          <div class="chat-messages" id="chatMessages">
+            <div class="msg-bubble msg-received">
+              Hey Kathar! Saw your recent university projects. Great work on the ERP implementation!
+            </div>
+            <div class="msg-bubble msg-sent">
+              Hi Aarav! Thanks so much. We just expanded our alumni directory to 1,000 records!
+            </div>
+            <div class="msg-bubble msg-received">
+              That's awesome! If anyone from CSE or IT wants an engineering referral at Google Cloud, let me know!
+            </div>
+          </div>
+
+          <div class="chat-input-bar">
+            <input type="text" id="chatInput" placeholder="Type a message to Aarav..." />
+            <button class="btn-send" id="sendBtn" type="button">Send</button>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- SECTION 3: HAPPY EXIT STUDENTS GALLERY -->
-    <section class="gallery-section">
-      <div class="gallery-header">
-        <div class="gallery-badge">🎓 Convocation & Placements</div>
-        <h2 class="gallery-title">Happy Exit Students & Proud Graduates</h2>
-        <p class="gallery-subtitle">Featured in our 1,000 Alumni Directory above — celebrating their global industry placements</p>
-      </div>
+    <!-- 4. NOTIFICATION TAB VIEW -->
+    <section id="notificationView" class="tab-view">
+      <div class="notif-container">
+        <h2 style="font-size: 1.4rem; font-weight: 700; margin-bottom: 16px; color: #f9fafb;">🔔 Notifications</h2>
 
-      <div class="gallery-grid" id="exitStudentsGallery">
-        <!-- Rendered dynamically via script.js -->
+        <div class="notif-item">
+          <span class="notif-icon">💼</span>
+          <div class="notif-text">
+            <strong>Google</strong> posted a new opportunity: <em>Senior Software Engineer</em> referred by Aarav Sharma.
+          </div>
+          <span class="notif-time">15m ago</span>
+        </div>
+
+        <div class="notif-item">
+          <span class="notif-icon">🎓</span>
+          <div class="notif-text">
+            <strong>Priya Iyer (Microsoft)</strong> accepted your connection request.
+          </div>
+          <span class="notif-time">1h ago</span>
+        </div>
+
+        <div class="notif-item">
+          <span class="notif-icon">📊</span>
+          <div class="notif-text">
+            <strong>ERP System Update:</strong> 1,000 Alumni records and 500 student records synced with monthly salary data.
+          </div>
+          <span class="notif-time">3h ago</span>
+        </div>
+
+        <div class="notif-item">
+          <span class="notif-icon">👍</span>
+          <div class="notif-text">
+            <strong>Rohan Verma (Amazon AWS)</strong> and 14 others liked your post.
+          </div>
+          <span class="notif-time">5h ago</span>
+        </div>
+
+        <div class="notif-item">
+          <span class="notif-icon">🚀</span>
+          <div class="notif-text">
+            <strong>Tesla Careers</strong> viewed your profile and downloaded your resume.
+          </div>
+          <span class="notif-time">1d ago</span>
+        </div>
       </div>
     </section>
+
+    <!-- 5. ME TAB VIEW -->
+    <section id="meView" class="tab-view">
+      <div class="me-container">
+        <div class="card me-card-full">
+          <div class="me-banner-full"></div>
+          <div class="me-avatar-full">
+            <span>👨‍💻</span>
+          </div>
+          <div class="me-details">
+            <h1 style="font-size: 1.8rem; font-weight: 800; color: #f9fafb;">Kathar Hussain</h1>
+            <p style="font-size: 1rem; color: #9ca3af; margin-top: 4px;">
+              Aspiring Software Engineer & Full-Stack Developer • Computer Science & Engineering
+            </p>
+            <p style="font-size: 0.85rem; color: #6b7280; margin-top: 6px;">
+              University Campus • Class of 2024 • 500+ Connections
+            </p>
+
+            <div style="margin-top: 20px; display: flex; gap: 12px;">
+              <a href="erp.html" class="btn-erp-portal">View In Student ERP Directory</a>
+              <button class="post-action-btn" style="border: 1px solid #374151; padding: 8px 18px;" type="button">Edit Profile</button>
+            </div>
+
+            <div style="margin-top: 28px; border-top: 1px solid #1f2937; padding-top: 20px;">
+              <h3 style="font-size: 1.1rem; font-weight: 700; color: #f3f4f6; margin-bottom: 12px;">About Me</h3>
+              <p style="font-size: 0.9rem; color: #d1d5db; line-height: 1.6;">
+                Passionate Computer Science student specialized in web application architecture, system design, and large dataset handling. Creator of the University ERP Portal managing 500 student records and 1,000 alumni career placements across Fortune 500 tech firms.
+              </p>
+            </div>
+
+            <div style="margin-top: 24px; border-top: 1px solid #1f2937; padding-top: 20px;">
+              <h3 style="font-size: 1.1rem; font-weight: 700; color: #f3f4f6; margin-bottom: 12px;">Top Skills</h3>
+              <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                <span style="background: #1f2937; color: #60a5fa; padding: 5px 12px; border-radius: 9999px; font-size: 0.82rem; font-weight: 600;">JavaScript / Node.js</span>
+                <span style="background: #1f2937; color: #34d399; padding: 5px 12px; border-radius: 9999px; font-size: 0.82rem; font-weight: 600;">ERP Data Architecture</span>
+                <span style="background: #1f2937; color: #f59e0b; padding: 5px 12px; border-radius: 9999px; font-size: 0.82rem; font-weight: 600;">HTML5 / Modern CSS</span>
+                <span style="background: #1f2937; color: #a78bfa; padding: 5px 12px; border-radius: 9999px; font-size: 0.82rem; font-weight: 600;">Git & GitHub CLI</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
   </main>
 
-  <script src="script.js"></script>
+  <script src="home.js"></script>
 </body>
 </html>
