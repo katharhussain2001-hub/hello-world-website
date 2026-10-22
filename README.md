@@ -1,20 +1,23 @@
-# Hello World & Student ERP Spreadsheet (Single Sheet 500 Records)
+# University Student & Alumni ERP Portal
 
-A modern web application featuring a centered "Hello World" button that expands into an interactive, Excel-style student ERP spreadsheet containing all 500 student records in a single continuous sheet.
+A modern web application featuring interactive Excel spreadsheets for current students, alumni career records, and a convocation photo gallery of happy exit students—all seamlessly integrated on a single page.
 
-## Features
+## Key Features
 
-- **Hello World Toggle**: Smoothly reveals or hides the ERP spreadsheet.
-- **⚡ Dedicated Filter Controls**:
-  - Filter by **Roll No** (e.g. `24CS`, `005`).
-  - Filter by **Name** (e.g. `Aarav`, `Sharma`).
-  - Filter by **Department** dropdown (Computer Science, Information Technology, Electronics & Communication, Mechanical, Electrical).
-  - One-click **Clear Filters** button.
-- **Single Continuous Sheet**:
-  - All 500 student records loaded on a single scrollable sheet.
-  - Sticky column headers (`A`, `B`, `C`, `D`, `E`) and row numbers (`1` to `501`) that stay pinned as you scroll.
+- **Navigation Buttons**:
+  - **🎓 Student Details**: Opens the master student ERP spreadsheet (500 records).
+  - **💼 Alumni Details**: Opens the alumni career and placement spreadsheet.
+- **Alumni Directory**:
+  - Fields: Alumni ID, Alumni Name, Department, Current Designation (e.g. Senior Software Engineer @ Google, Staff AI Researcher @ Microsoft), and Monthly Salary.
+  - Multi-criteria filter: Filter by Alumni Name, Department, and Designation.
+- **Student ERP Spreadsheet**:
+  - Master single-sheet view of 500 records across 5 engineering departments.
+  - Multi-criteria filter: Filter by Roll No, Name, and Department.
+- **🎓 Happy Exit Students Gallery**:
+  - Highlighting graduating students and alumni stepping into top global companies (Google, Microsoft, Amazon, Tesla, Boeing, Meta).
+  - Showcases convocation moments, batch year, placed company, and inspiring quotes.
 - **Export to CSV**:
-  - Download all or currently filtered student records directly as a `.csv` spreadsheet file for Microsoft Excel.
+  - One-click export for both Student and Alumni datasets.
 
 ## Files
 
@@ -24,4 +27,4 @@ A modern web application featuring a centered "Hello World" button that expands 
 
 ## How to View
 
-Open [index.html](file:///C:/Users/HP/.gemini/antigravity/scratch/hello-world-website/index.html) in your browser.
+Open [index.html](file:///C:/Users/HP/.gemini/antigravity/scratch/hello-world-website/index.html) directly in your browser.

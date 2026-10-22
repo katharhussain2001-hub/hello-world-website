@@ -17,76 +17,105 @@ body {
 
 .page-container {
   width: 100%;
-  max-width: 1060px;
+  max-width: 1080px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 28px;
+  gap: 32px;
 }
 
-/* Button & Intro */
-.button-wrapper {
+/* Header & Navigation Buttons */
+.header-section {
   text-align: center;
-  margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
 }
 
-.hello-button {
+.portal-title {
+  font-size: 2.2rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.portal-subtitle {
+  font-size: 1rem;
+  color: #94a3b8;
+  max-width: 620px;
+}
+
+.nav-button-group {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 14px;
+}
+
+.nav-btn {
   appearance: none;
-  border: none;
+  border: 2px solid transparent;
   outline: none;
   cursor: pointer;
-  padding: 18px 46px;
-  font-size: 1.3rem;
+  padding: 14px 34px;
+  font-size: 1.15rem;
   font-weight: 700;
-  letter-spacing: 0.5px;
-  color: #ffffff;
-  background: linear-gradient(135deg, #107c41 0%, #198754 50%, #20c997 100%);
-  border-radius: 9999px;
-  box-shadow: 0 10px 25px -5px rgba(16, 124, 65, 0.4),
-              0 8px 10px -6px rgba(16, 124, 65, 0.2);
-  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1),
-              box-shadow 0.2s ease,
-              filter 0.2s ease;
-}
-
-.hello-button:hover {
-  transform: translateY(-3px) scale(1.03);
-  box-shadow: 0 18px 30px -8px rgba(16, 124, 65, 0.5);
-  filter: brightness(1.08);
-}
-
-.hello-button:active {
-  transform: translateY(1px) scale(0.98);
-}
-
-.hint-text {
-  margin-top: 12px;
-  font-size: 0.9rem;
+  letter-spacing: 0.3px;
   color: #94a3b8;
+  background: rgba(30, 41, 59, 0.8);
+  border-color: #334155;
+  border-radius: 9999px;
+  transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
-/* ERP Section & Excel Card */
-.erp-wrapper {
+.nav-btn:hover {
+  transform: translateY(-2px);
+  color: #ffffff;
+  border-color: #64748b;
+  background: #1e293b;
+}
+
+/* Active State: Student (Emerald Green) */
+.nav-btn.active#studentBtn {
+  color: #ffffff;
+  background: linear-gradient(135deg, #107c41 0%, #198754 100%);
+  border-color: #20c997;
+  box-shadow: 0 10px 24px -6px rgba(16, 124, 65, 0.5);
+  transform: translateY(-2px) scale(1.02);
+}
+
+/* Active State: Alumni (Royal Blue) */
+.nav-btn.active#alumniBtn {
+  color: #ffffff;
+  background: linear-gradient(135deg, #1d4ed8 0%, #3b82f6 100%);
+  border-color: #60a5fa;
+  box-shadow: 0 10px 24px -6px rgba(37, 99, 235, 0.5);
+  transform: translateY(-2px) scale(1.02);
+}
+
+/* Content Sections */
+.content-section {
   width: 100%;
   transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
-.erp-wrapper.hidden {
+.content-section.hidden {
   display: none;
   opacity: 0;
   transform: translateY(12px);
 }
 
-.erp-wrapper.visible {
-  display: block;
-  opacity: 1;
-  transform: translateY(0);
-}
-
+/* Excel Card Container */
 .excel-card {
   background: #ffffff;
   border-radius: 10px;
-  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 20px 45px -10px rgba(0, 0, 0, 0.45);
   overflow: hidden;
   border: 1px solid #cbd5e1;
 }
@@ -99,6 +128,10 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.excel-titlebar.alumni-bar {
+  background: #1d4ed8;
 }
 
 .excel-brand {
@@ -120,6 +153,10 @@ body {
   border-radius: 4px;
 }
 
+.excel-icon.alumni-icon {
+  color: #1d4ed8;
+}
+
 .excel-title {
   font-size: 0.92rem;
   font-weight: 600;
@@ -131,11 +168,11 @@ body {
   gap: 10px;
 }
 
-.btn-filter, .btn-export {
+.btn-action {
   background: rgba(255, 255, 255, 0.2);
   color: #ffffff;
   border: 1px solid rgba(255, 255, 255, 0.4);
-  padding: 4px 12px;
+  padding: 5px 12px;
   border-radius: 4px;
   font-size: 0.8rem;
   font-weight: 600;
@@ -143,13 +180,13 @@ body {
   transition: all 0.2s ease;
 }
 
-.btn-filter:hover, .btn-export:hover {
+.btn-action:hover {
   background: rgba(255, 255, 255, 0.35);
 }
 
-.btn-filter.active {
+.btn-action.active {
   background: #ffffff;
-  color: #107c41;
+  color: #0f172a;
   border-color: #ffffff;
 }
 
@@ -182,11 +219,11 @@ body {
 }
 
 .filter-title {
-  font-size: 0.78rem;
+  font-size: 0.76rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.6px;
-  color: #107c41;
+  color: #475569;
 }
 
 .filter-inputs {
@@ -201,7 +238,7 @@ body {
   flex-direction: column;
   gap: 4px;
   flex: 1;
-  min-width: 160px;
+  min-width: 170px;
 }
 
 .filter-field label {
@@ -218,12 +255,16 @@ body {
   color: #1e293b;
   background: #ffffff;
   outline: none;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  transition: border-color 0.2s ease;
 }
 
 .filter-field input:focus, .filter-field select:focus {
   border-color: #107c41;
-  box-shadow: 0 0 0 2px rgba(16, 124, 65, 0.15);
+}
+
+.alumni-bar ~ .filter-panel .filter-field input:focus,
+.alumni-bar ~ .filter-panel .filter-field select:focus {
+  border-color: #1d4ed8;
 }
 
 .filter-actions {
@@ -231,7 +272,7 @@ body {
   align-items: center;
 }
 
-.btn-reset-filter {
+.btn-reset {
   background: #e2e8f0;
   border: 1px solid #cbd5e1;
   color: #475569;
@@ -243,13 +284,13 @@ body {
   transition: all 0.2s ease;
 }
 
-.btn-reset-filter:hover {
+.btn-reset:hover {
   background: #fee2e2;
   color: #991b1b;
   border-color: #fca5a5;
 }
 
-/* Formula & Quick Search Bar */
+/* Formula Bar */
 .excel-bar {
   background: #f1f5f9;
   border-bottom: 1px solid #cbd5e1;
@@ -288,16 +329,11 @@ body {
   border-radius: 4px;
   font-size: 0.88rem;
   outline: none;
-  transition: border-color 0.2s ease;
 }
 
-.formula-input:focus {
-  border-color: #107c41;
-}
-
-/* Table styling: Excel Grid */
+/* Table Styling */
 .table-scroll {
-  max-height: 580px;
+  max-height: 540px;
   overflow-x: auto;
   overflow-y: auto;
   scroll-behavior: smooth;
@@ -310,7 +346,6 @@ body {
   text-align: left;
 }
 
-/* Column letters (A, B, C...) */
 .col-headers th {
   background: #e2e8f0;
   color: #475569;
@@ -332,7 +367,6 @@ body {
   z-index: 3;
 }
 
-/* Data Column Headers (Roll No, Name, etc.) */
 .data-headers th {
   background: #f8fafc;
   color: #0f172a;
@@ -358,13 +392,8 @@ body {
   z-index: 1;
 }
 
-/* Table body data cells */
-.excel-table tbody tr {
-  transition: background-color 0.1s ease;
-}
-
 .excel-table tbody tr:hover {
-  background-color: #ecfdf5 !important;
+  background-color: #f1f5f9 !important;
 }
 
 .excel-table tbody tr:nth-child(even) {
@@ -378,6 +407,12 @@ body {
   white-space: nowrap;
 }
 
+.id-cell {
+  font-family: monospace;
+  font-weight: 600;
+  color: #1d4ed8;
+}
+
 .roll-cell {
   font-family: monospace;
   font-weight: 600;
@@ -387,6 +422,18 @@ body {
 .name-cell {
   font-weight: 600;
   color: #0f172a;
+}
+
+.designation-cell {
+  color: #1e293b;
+  font-weight: 600;
+}
+
+.salary-cell {
+  font-family: monospace;
+  font-weight: 700;
+  color: #15803d;
+  background: #f0fdf4;
 }
 
 .status-badge {
@@ -448,7 +495,163 @@ body {
   border-bottom: 2px solid #107c41;
 }
 
+.alumni-bar ~ * .sheet-tab.active {
+  color: #1d4ed8;
+  border-bottom: 2px solid #1d4ed8;
+}
+
 .footer-stats {
   color: #64748b;
   font-weight: 600;
+}
+
+/* HAPPY EXIT STUDENTS GALLERY SECTION */
+.gallery-section {
+  width: 100%;
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.gallery-header {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.gallery-badge {
+  background: rgba(59, 130, 246, 0.15);
+  color: #60a5fa;
+  border: 1px solid rgba(96, 165, 250, 0.3);
+  padding: 4px 14px;
+  border-radius: 9999px;
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+.gallery-title {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: #f8fafc;
+}
+
+.gallery-subtitle {
+  font-size: 0.95rem;
+  color: #94a3b8;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 22px;
+}
+
+.exit-card {
+  background: #ffffff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s ease;
+  border: 1px solid #e2e8f0;
+}
+
+.exit-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 35px -8px rgba(0, 0, 0, 0.45);
+}
+
+.card-banner {
+  height: 90px;
+  background: linear-gradient(135deg, #107c41 0%, #1d4ed8 100%);
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px;
+}
+
+.batch-tag {
+  background: rgba(255, 255, 255, 0.9);
+  color: #0f172a;
+  font-weight: 700;
+  font-size: 0.72rem;
+  padding: 3px 8px;
+  border-radius: 9999px;
+  height: fit-content;
+}
+
+.card-avatar-wrap {
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 3px solid #ffffff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  margin-top: -38px;
+  margin-left: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.2rem;
+}
+
+.card-body {
+  padding: 14px 20px 20px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+
+.student-exit-name {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.student-exit-dept {
+  font-size: 0.82rem;
+  color: #64748b;
+  font-weight: 600;
+}
+
+.placement-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #eff6ff;
+  color: #1d4ed8;
+  border: 1px solid #bfdbfe;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  width: fit-content;
+  margin-top: 2px;
+}
+
+.exit-quote {
+  font-size: 0.84rem;
+  color: #475569;
+  font-style: italic;
+  line-height: 1.45;
+  margin-top: 6px;
+  border-left: 3px solid #107c41;
+  padding-left: 10px;
+}
+
+.card-footer {
+  margin-top: auto;
+  padding-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid #f1f5f9;
+  font-size: 0.78rem;
+  color: #15803d;
+  font-weight: 700;
 }
