@@ -58,19 +58,12 @@ function generate500Students() {
 
 const allStudents = generate500Students();
 let filteredStudents = [...allStudents];
-let currentPage = 1;
-let pageSize = 25;
 
 document.addEventListener("DOMContentLoaded", () => {
   const helloBtn = document.getElementById("helloBtn");
   const erpSection = document.getElementById("erpSection");
   const tableBody = document.getElementById("studentTableBody");
   const searchInput = document.getElementById("searchInput");
-  const pageSizeSelect = document.getElementById("pageSizeSelect");
-  const prevBtn = document.getElementById("prevBtn");
-  const nextBtn = document.getElementById("nextBtn");
-  const pageIndicator = document.getElementById("pageIndicator");
-  const paginationInfo = document.getElementById("paginationInfo");
   const recordCount = document.getElementById("recordCount");
   const cellAddress = document.querySelector(".cell-address");
   const exportBtn = document.getElementById("exportBtn");
@@ -81,9 +74,10 @@ document.addEventListener("DOMContentLoaded", () => {
     return "on-leave";
   }
 
-  function renderTable() {
+  // Render all records directly in a single sheet
+  function renderAllRows(records) {
     tableBody.innerHTML = "";
-    const totalRecords = filteredStudents.length;
+    const totalRecords = records.length;
 
     if (totalRecords === 0) {
       tableBody.innerHTML = `
@@ -94,24 +88,16 @@ document.addEventListener("DOMContentLoaded", () => {
           </td>
         </tr>
       `;
-      pageIndicator.textContent = "Page 0 of 0";
-      paginationInfo.textContent = "Showing 0 of 0 students";
-      prevBtn.disabled = true;
-      nextBtn.disabled = true;
+      recordCount.textContent = "0 students found";
       return;
     }
 
-    const totalPages = Math.ceil(totalRecords / pageSize);
-    if (currentPage > totalPages) currentPage = totalPages;
-    if (currentPage < 1) currentPage = 1;
+    // Use DocumentFragment for super fast DOM rendering of all 500 rows
+    const fragment = document.createDocumentFragment();
 
-    const startIndex = (currentPage - 1) * pageSize;
-    const endIndex = Math.min(startIndex + pageSize, totalRecords);
-    const pageRecords = filteredStudents.slice(startIndex, endIndex);
-
-    pageRecords.forEach((student, index) => {
+    records.forEach((student, index) => {
       const row = document.createElement("tr");
-      const excelRowNum = startIndex + index + 2; // Row 1 is header
+      const excelRowNum = index + 2; // Row 1 is header
 
       row.innerHTML = `
         <td class="row-num">${excelRowNum}</td>
@@ -123,16 +109,11 @@ document.addEventListener("DOMContentLoaded", () => {
           <span class="status-badge ${getStatusClass(student.status)}">${student.status}</span>
         </td>
       `;
-      tableBody.appendChild(row);
+      fragment.appendChild(row);
     });
 
-    // Update pagination status
-    paginationInfo.textContent = `Showing ${startIndex + 1}–${endIndex} of ${totalRecords} students`;
-    pageIndicator.textContent = `Page ${currentPage} of ${totalPages}`;
-    recordCount.textContent = `Total: ${totalRecords} students loaded`;
-
-    prevBtn.disabled = currentPage === 1;
-    nextBtn.disabled = currentPage === totalPages;
+    tableBody.appendChild(fragment);
+    recordCount.textContent = `Ready | ${totalRecords} students loaded`;
   }
 
   // Toggle ERP Spreadsheet
@@ -152,7 +133,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Search filter
+  // Search filter across all 500 students in real time
   searchInput.addEventListener("input", (e) => {
     const query = e.target.value.toLowerCase().trim();
     filteredStudents = allStudents.filter(student =>
@@ -162,36 +143,10 @@ document.addEventListener("DOMContentLoaded", () => {
       student.semester.toLowerCase().includes(query) ||
       student.status.toLowerCase().includes(query)
     );
-    currentPage = 1;
-    renderTable();
+    renderAllRows(filteredStudents);
   });
 
-  // Page size change
-  pageSizeSelect.addEventListener("change", (e) => {
-    pageSize = parseInt(e.target.value, 10);
-    currentPage = 1;
-    renderTable();
-  });
-
-  // Pagination button handlers
-  prevBtn.addEventListener("click", () => {
-    if (currentPage > 1) {
-      currentPage--;
-      renderTable();
-      tableBody.parentElement.scrollTop = 0;
-    }
-  });
-
-  nextBtn.addEventListener("click", () => {
-    const totalPages = Math.ceil(filteredStudents.length / pageSize);
-    if (currentPage < totalPages) {
-      currentPage++;
-      renderTable();
-      tableBody.parentElement.scrollTop = 0;
-    }
-  });
-
-  // Cell address click handler
+  // Interactive Excel cell click
   tableBody.addEventListener("click", (e) => {
     const cell = e.target.closest("td");
     if (cell && cell.dataset.col && cell.dataset.row) {
@@ -200,7 +155,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Export to CSV function
+  // Export all records to CSV
   exportBtn.addEventListener("click", () => {
     const headers = ["Roll No", "Student Name", "Department", "Semester", "Status"];
     const rows = filteredStudents.map(s => [
@@ -222,6 +177,6 @@ document.addEventListener("DOMContentLoaded", () => {
     document.body.removeChild(link);
   });
 
-  // Initial render
-  renderTable();
+  // Initial render of all 500 students in one single sheet
+  renderAllRows(allStudents);
 });

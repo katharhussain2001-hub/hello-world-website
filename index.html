@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hello World - Student ERP (500 Records)</title>
+  <title>Hello World - Student ERP (Single Sheet 500 Records)</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -40,18 +40,9 @@
           <div class="cell-address">A1</div>
           <div class="fx-label">fx</div>
           <input type="text" id="searchInput" class="formula-input" placeholder="Search across 500 students by name, roll no, or department..." />
-          <div class="page-size-selector">
-            <label for="pageSizeSelect">Show:</label>
-            <select id="pageSizeSelect">
-              <option value="25" selected>25</option>
-              <option value="50">50</option>
-              <option value="100">100</option>
-              <option value="500">All (500)</option>
-            </select>
-          </div>
         </div>
 
-        <!-- Spreadsheet Table Container -->
+        <!-- Single Sheet Table Container -->
         <div class="table-scroll">
           <table class="excel-table">
             <thead>
@@ -73,28 +64,18 @@
               </tr>
             </thead>
             <tbody id="studentTableBody">
-              <!-- Rendered via script.js -->
+              <!-- All 500 rows rendered via script.js -->
             </tbody>
           </table>
-        </div>
-
-        <!-- Pagination & Footer -->
-        <div class="excel-pagination">
-          <div class="pagination-info" id="paginationInfo">Showing 1-25 of 500 students</div>
-          <div class="pagination-buttons">
-            <button id="prevBtn" class="page-btn" type="button">&laquo; Prev</button>
-            <span id="pageIndicator" class="page-indicator">Page 1 of 20</span>
-            <button id="nextBtn" class="page-btn" type="button">Next &raquo;</button>
-          </div>
         </div>
 
         <!-- Excel Sheet Footer -->
         <div class="excel-footer">
           <div class="sheet-tabs">
-            <button class="sheet-tab active" type="button">All_Students_500</button>
+            <button class="sheet-tab active" type="button">Sheet1 (500 Students)</button>
             <button class="sheet-tab" type="button">+</button>
           </div>
-          <div class="footer-stats" id="recordCount">Total: 500 students</div>
+          <div class="footer-stats" id="recordCount">Ready | 500 students loaded</div>
         </div>
       </div>
     </section>
