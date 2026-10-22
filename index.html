@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hello World - Student ERP</title>
+  <title>Hello World - Student ERP (500 Records)</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -12,7 +12,7 @@
       <button id="helloBtn" class="hello-button" type="button">
         Hello World
       </button>
-      <p class="hint-text">Click the button to view the Student ERP Sheet</p>
+      <p class="hint-text">Click the button to view the 500 Student ERP Sheet</p>
     </div>
 
     <section id="erpSection" class="erp-wrapper hidden" aria-hidden="true">
@@ -21,12 +21,17 @@
         <div class="excel-titlebar">
           <div class="excel-brand">
             <span class="excel-icon">X</span>
-            <span class="excel-title">Student_ERP_List.xlsx — Excel</span>
+            <span class="excel-title">Student_ERP_Master_List_500.xlsx — Excel</span>
           </div>
-          <div class="window-controls">
-            <span class="dot"></span>
-            <span class="dot"></span>
-            <span class="dot"></span>
+          <div class="excel-actions">
+            <button id="exportBtn" class="btn-export" type="button" title="Download as CSV / Excel">
+              📥 Export CSV
+            </button>
+            <div class="window-controls">
+              <span class="dot"></span>
+              <span class="dot"></span>
+              <span class="dot"></span>
+            </div>
           </div>
         </div>
 
@@ -34,7 +39,16 @@
         <div class="excel-bar">
           <div class="cell-address">A1</div>
           <div class="fx-label">fx</div>
-          <input type="text" id="searchInput" class="formula-input" placeholder="Search student by name, roll no, or department..." />
+          <input type="text" id="searchInput" class="formula-input" placeholder="Search across 500 students by name, roll no, or department..." />
+          <div class="page-size-selector">
+            <label for="pageSizeSelect">Show:</label>
+            <select id="pageSizeSelect">
+              <option value="25" selected>25</option>
+              <option value="50">50</option>
+              <option value="100">100</option>
+              <option value="500">All (500)</option>
+            </select>
+          </div>
         </div>
 
         <!-- Spreadsheet Table Container -->
@@ -64,13 +78,23 @@
           </table>
         </div>
 
+        <!-- Pagination & Footer -->
+        <div class="excel-pagination">
+          <div class="pagination-info" id="paginationInfo">Showing 1-25 of 500 students</div>
+          <div class="pagination-buttons">
+            <button id="prevBtn" class="page-btn" type="button">&laquo; Prev</button>
+            <span id="pageIndicator" class="page-indicator">Page 1 of 20</span>
+            <button id="nextBtn" class="page-btn" type="button">Next &raquo;</button>
+          </div>
+        </div>
+
         <!-- Excel Sheet Footer -->
         <div class="excel-footer">
           <div class="sheet-tabs">
-            <button class="sheet-tab active" type="button">Students_ERP</button>
+            <button class="sheet-tab active" type="button">All_Students_500</button>
             <button class="sheet-tab" type="button">+</button>
           </div>
-          <div class="footer-stats" id="recordCount">10 records loaded</div>
+          <div class="footer-stats" id="recordCount">Total: 500 students</div>
         </div>
       </div>
     </section>

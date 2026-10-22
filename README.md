@@ -1,21 +1,21 @@
-# Hello World & Student ERP Spreadsheet
+# Hello World & Student ERP Spreadsheet (500 Records)
 
-A modern web application featuring a centered "Hello World" button that expands into an interactive, Excel-style student ERP spreadsheet.
+A modern web application featuring a centered "Hello World" button that expands into an interactive, Excel-style student ERP spreadsheet containing 500 complete student records.
 
 ## Features
 
 - **Hello World Toggle**: Smoothly reveals or hides the ERP spreadsheet.
+- **500 Student Records**:
+  - 100 students each across 5 departments: Computer Science, Information Technology, Electronics & Communication, Mechanical Engineering, and Electrical & Electronics.
+  - Formatted Roll Numbers (e.g. `24CS001` - `24CS100`, `24IT001` - `24IT100`, etc.).
+  - Semesters (`2nd`, `4th`, `6th`, `8th`) and statuses (`Active`, `Inactive`, `On Leave`).
 - **Excel Spreadsheet UI**:
-  - Classic green title bar and column headers (`A`, `B`, `C`, `D`, `E`).
-  - Row numbers on the left (`1`, `2`, `3`...).
+  - Sticky column headers (`A`, `B`, `C`, `D`, `E`) and row numbers (`1` to `501`).
   - Crisp grid lines and cell selection.
-- **Fields Included**:
-  - Roll No
-  - Student Name
-  - Department
-  - Semester
-  - Status
-- **Interactive Formula Bar**: Live search filter across names, roll numbers, and departments.
+- **Smart Pagination & Filtering**:
+  - Fast pagination (25, 50, 100, or All 500).
+  - Instant live search in the formula bar across names, roll numbers, and departments.
+  - **Export to CSV**: Click the "📥 Export CSV" button to download all student records directly into Excel.
 
 ## Files
 
@@ -25,4 +25,4 @@ A modern web application featuring a centered "Hello World" button that expands 
 
 ## How to View
 
-Click or open [index.html](file:///C:/Users/HP/.gemini/antigravity/scratch/hello-world-website/index.html) in your browser.
+Open [index.html](file:///C:/Users/HP/.gemini/antigravity/scratch/hello-world-website/index.html) in your browser.

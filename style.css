@@ -17,7 +17,7 @@ body {
 
 .page-container {
   width: 100%;
-  max-width: 980px;
+  max-width: 1040px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -27,7 +27,7 @@ body {
 /* Button & Intro */
 .button-wrapper {
   text-align: center;
-  margin-top: 20px;
+  margin-top: 15px;
 }
 
 .hello-button {
@@ -125,6 +125,28 @@ body {
   font-weight: 600;
 }
 
+.excel-actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.btn-export {
+  background: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  padding: 4px 12px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.btn-export:hover {
+  background: rgba(255, 255, 255, 0.35);
+}
+
 .window-controls {
   display: flex;
   gap: 8px;
@@ -145,6 +167,7 @@ body {
   align-items: center;
   padding: 6px 12px;
   gap: 10px;
+  flex-wrap: wrap;
 }
 
 .cell-address {
@@ -170,6 +193,7 @@ body {
 
 .formula-input {
   flex: 1;
+  min-width: 220px;
   border: 1px solid #cbd5e1;
   background: #ffffff;
   padding: 6px 12px;
@@ -183,9 +207,29 @@ body {
   border-color: #107c41;
 }
 
+.page-size-selector {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.85rem;
+  color: #475569;
+  font-weight: 500;
+}
+
+.page-size-selector select {
+  padding: 4px 8px;
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+  background: #ffffff;
+  font-size: 0.85rem;
+  color: #334155;
+  outline: none;
+  cursor: pointer;
+}
+
 /* Table styling: Excel Grid */
 .table-scroll {
-  max-height: 480px;
+  max-height: 520px;
   overflow-x: auto;
   overflow-y: auto;
 }
@@ -206,11 +250,17 @@ body {
   padding: 5px 8px;
   border: 1px solid #cbd5e1;
   font-size: 0.78rem;
+  position: sticky;
+  top: 0;
+  z-index: 2;
 }
 
 .corner-header {
   background: #cbd5e1 !important;
-  width: 48px;
+  width: 54px;
+  position: sticky;
+  left: 0;
+  z-index: 3;
 }
 
 /* Data Column Headers (Roll No, Name, etc.) */
@@ -221,6 +271,9 @@ body {
   padding: 10px 14px;
   border: 1px solid #cbd5e1;
   letter-spacing: 0.3px;
+  position: sticky;
+  top: 27px;
+  z-index: 2;
 }
 
 .row-num {
@@ -229,8 +282,11 @@ body {
   font-weight: 600;
   text-align: center;
   border: 1px solid #cbd5e1;
-  width: 48px;
+  width: 54px;
   user-select: none;
+  position: sticky;
+  left: 0;
+  z-index: 1;
 }
 
 /* Table body data cells */
@@ -270,8 +326,71 @@ body {
   font-size: 0.75rem;
   font-weight: 600;
   border-radius: 9999px;
+}
+
+.status-badge.active {
   background: #dcfce7;
   color: #166534;
+}
+
+.status-badge.inactive {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.status-badge.on-leave {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+/* Pagination bar */
+.excel-pagination {
+  background: #ffffff;
+  border-top: 1px solid #cbd5e1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 16px;
+  font-size: 0.85rem;
+}
+
+.pagination-info {
+  color: #64748b;
+  font-weight: 500;
+}
+
+.pagination-buttons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.page-btn {
+  background: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  color: #334155;
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding: 5px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.page-btn:hover:not(:disabled) {
+  background: #107c41;
+  color: #ffffff;
+  border-color: #107c41;
+}
+
+.page-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.page-indicator {
+  font-weight: 600;
+  color: #475569;
 }
 
 /* Footer / Sheet Tabs */
