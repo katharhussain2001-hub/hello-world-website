@@ -9,11 +9,11 @@
 <body>
   <main class="page-container">
     <!-- Top Navigation Bar & Return Link -->
-    <div style="width: 100%; display: flex; justify-content: space-between; align-items: center; margin-bottom: -10px;">
+    <div style="width: 100%; display: flex; justify-content: space-between; align-items: center; margin-bottom: -10px; flex-wrap: wrap; gap: 10px;">
       <a href="index.html" class="btn-action" style="text-decoration: none; display: inline-flex; align-items: center; gap: 8px; font-size: 0.9rem; padding: 8px 18px; border-radius: 9999px; background: rgba(30, 41, 59, 0.9); border: 1px solid #475569; color: #f8fafc;">
         🏠 ← Back to Campus Network (Home, Jobs, Messages)
       </a>
-      <span style="color: #94a3b8; font-size: 0.85rem;">University Master ERP System</span>
+      <span style="color: #94a3b8; font-size: 0.85rem;">University Master ERP System • v2.4</span>
     </div>
 
     <!-- Top Header & Navigation Buttons -->
@@ -21,6 +21,26 @@
       <h1 class="portal-title">University ERP & Alumni Portal</h1>
       <p class="portal-subtitle">Access live student records, 1,000+ alumni career placements, and convocation highlights</p>
       
+      <!-- Live Metrics Dashboard -->
+      <div style="display: flex; gap: 16px; margin-top: 10px; flex-wrap: wrap; justify-content: center; width: 100%;">
+        <div style="background: rgba(30, 41, 59, 0.7); border: 1px solid #334155; border-radius: 10px; padding: 10px 18px; text-align: center; min-width: 130px;">
+          <div style="font-size: 1.4rem; font-weight: 800; color: #34d399;">500</div>
+          <div style="font-size: 0.75rem; color: #94a3b8; text-transform: uppercase;">Active Students</div>
+        </div>
+        <div style="background: rgba(30, 41, 59, 0.7); border: 1px solid #334155; border-radius: 10px; padding: 10px 18px; text-align: center; min-width: 130px;">
+          <div style="font-size: 1.4rem; font-weight: 800; color: #60a5fa;">1,000</div>
+          <div style="font-size: 0.75rem; color: #94a3b8; text-transform: uppercase;">Alumni Placed</div>
+        </div>
+        <div style="background: rgba(30, 41, 59, 0.7); border: 1px solid #334155; border-radius: 10px; padding: 10px 18px; text-align: center; min-width: 130px;">
+          <div style="font-size: 1.4rem; font-weight: 800; color: #fbbf24;">$12,450</div>
+          <div style="font-size: 0.75rem; color: #94a3b8; text-transform: uppercase;">Avg Monthly Salary</div>
+        </div>
+        <div style="background: rgba(30, 41, 59, 0.7); border: 1px solid #334155; border-radius: 10px; padding: 10px 18px; text-align: center; min-width: 130px;">
+          <div style="font-size: 1.4rem; font-weight: 800; color: #f472b6;">$18,500</div>
+          <div style="font-size: 0.75rem; color: #94a3b8; text-transform: uppercase;">Highest Package / Mo</div>
+        </div>
+      </div>
+
       <div class="nav-button-group">
         <button id="studentBtn" class="nav-btn active" type="button">
           🎓 Student Details
