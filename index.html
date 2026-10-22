@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Student & Alumni ERP Portal</title>
+  <title>Student & Alumni ERP Portal (1000 Alumni Records)</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -11,7 +11,7 @@
     <!-- Top Header & Navigation Buttons -->
     <header class="header-section">
       <h1 class="portal-title">University ERP & Alumni Portal</h1>
-      <p class="portal-subtitle">Access live student records, alumni career placements, and graduation highlights</p>
+      <p class="portal-subtitle">Access live student records, 1,000+ alumni career placements, and convocation highlights</p>
       
       <div class="nav-button-group">
         <button id="studentBtn" class="nav-btn active" type="button">
@@ -23,7 +23,7 @@
       </div>
     </header>
 
-    <!-- SECTION 1: STUDENT ERP SHEET -->
+    <!-- SECTION 1: STUDENT ERP SHEET (500 RECORDS) -->
     <section id="studentSection" class="content-section">
       <div class="excel-card">
         <!-- Excel Title Bar -->
@@ -121,14 +121,14 @@
       </div>
     </section>
 
-    <!-- SECTION 2: ALUMNI DETAILS SHEET -->
+    <!-- SECTION 2: ALUMNI DETAILS SHEET (1000 RECORDS) -->
     <section id="alumniSection" class="content-section hidden">
       <div class="excel-card">
         <!-- Excel Title Bar -->
         <div class="excel-titlebar alumni-bar">
           <div class="excel-brand">
             <span class="excel-icon alumni-icon">A</span>
-            <span class="excel-title">Alumni_Placements_Directory.xlsx — Excel</span>
+            <span class="excel-title">Alumni_Directory_1000.xlsx — Excel</span>
           </div>
           <div class="excel-actions">
             <button id="alumniFilterToggle" class="btn-action" type="button" title="Toggle Filters">
@@ -151,7 +151,7 @@
           <div class="filter-inputs">
             <div class="filter-field">
               <label for="alumniFilterName">Alumni Name</label>
-              <input type="text" id="alumniFilterName" placeholder="e.g. Priya, Rohit..." />
+              <input type="text" id="alumniFilterName" placeholder="e.g. Aarav, Priya, Sharma..." />
             </div>
             <div class="filter-field">
               <label for="alumniFilterDept">Department</label>
@@ -165,8 +165,8 @@
               </select>
             </div>
             <div class="filter-field">
-              <label for="alumniFilterDesignation">Current Designation</label>
-              <input type="text" id="alumniFilterDesignation" placeholder="e.g. Lead, Architect, AI..." />
+              <label for="alumniFilterDesignation">Current Designation / Company</label>
+              <input type="text" id="alumniFilterDesignation" placeholder="e.g. Google, Architect, AI, Tesla..." />
             </div>
             <div class="filter-actions">
               <button id="alumniResetBtn" class="btn-reset" type="button">Reset Filters</button>
@@ -178,7 +178,7 @@
         <div class="excel-bar">
           <div class="cell-address">A1</div>
           <div class="fx-label">fx</div>
-          <input type="text" id="alumniSearchInput" class="formula-input" placeholder="Quick keyword search across alumni records..." />
+          <input type="text" id="alumniSearchInput" class="formula-input" placeholder="Quick keyword search across 1,000 alumni records..." />
         </div>
 
         <!-- Alumni Table -->
@@ -203,7 +203,7 @@
               </tr>
             </thead>
             <tbody id="alumniTableBody">
-              <!-- Rendered via script.js -->
+              <!-- All 1000 rows rendered via script.js -->
             </tbody>
           </table>
         </div>
@@ -211,10 +211,10 @@
         <!-- Excel Footer -->
         <div class="excel-footer">
           <div class="sheet-tabs">
-            <button class="sheet-tab active" type="button">Alumni_Directory</button>
+            <button class="sheet-tab active" type="button">Alumni_Directory (1000)</button>
             <button class="sheet-tab" type="button">+</button>
           </div>
-          <div class="footer-stats" id="alumniRecordCount">Ready | Alumni loaded</div>
+          <div class="footer-stats" id="alumniRecordCount">Ready | 1,000 alumni loaded</div>
         </div>
       </div>
     </section>
@@ -224,7 +224,7 @@
       <div class="gallery-header">
         <div class="gallery-badge">🎓 Convocation & Placements</div>
         <h2 class="gallery-title">Happy Exit Students & Proud Graduates</h2>
-        <p class="gallery-subtitle">Heartfelt congratulations to our shining graduates making an impact worldwide</p>
+        <p class="gallery-subtitle">Featured in our 1,000 Alumni Directory above — celebrating their global industry placements</p>
       </div>
 
       <div class="gallery-grid" id="exitStudentsGallery">

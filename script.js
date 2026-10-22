@@ -1,5 +1,5 @@
 // ==========================================
-// 1. DATA GENERATORS
+// 1. DATA GENERATORS & CONSTANTS
 // ==========================================
 
 const firstNames = [
@@ -22,6 +22,70 @@ const departments = [
   { name: "Electronics & Communication", code: "EC" },
   { name: "Mechanical Engineering", code: "ME" },
   { name: "Electrical & Electronics", code: "EE" }
+];
+
+// Featured Happy Exit Students Data
+const happyExitStudents = [
+  {
+    name: "Aarav Sharma",
+    avatar: "👨‍🎓",
+    department: "Computer Science & Engineering",
+    batch: "Class of 2024",
+    company: "Google",
+    designation: "Software Engineer @ Google",
+    salary: 11500,
+    quote: "Antigravity ERP made tracking our projects seamless! Excited to step into Google Cloud."
+  },
+  {
+    name: "Priya Iyer",
+    avatar: "👩‍🎓",
+    department: "Electronics & Communication",
+    batch: "Class of 2024",
+    company: "Microsoft",
+    designation: "Firmware Engineer @ Microsoft",
+    salary: 12200,
+    quote: "A thrilling journey from university labs to Microsoft hardware engineering!"
+  },
+  {
+    name: "Rohan Verma",
+    avatar: "👨‍🎓",
+    department: "Information Technology",
+    batch: "Class of 2024",
+    company: "Amazon AWS",
+    designation: "Solutions Architect @ Amazon AWS",
+    salary: 10800,
+    quote: "Grateful for the rigorous mentorship. Heading straight to AWS cloud infrastructure!"
+  },
+  {
+    name: "Sneha Kulkarni",
+    avatar: "👩‍🎓",
+    department: "Electrical & Electronics",
+    batch: "Class of 2024",
+    company: "Tesla",
+    designation: "Battery Systems Engineer @ Tesla",
+    salary: 13000,
+    quote: "Thrilled to contribute to clean energy mobility and electric battery tech at Tesla!"
+  },
+  {
+    name: "Vikram Singh",
+    avatar: "👨‍🎓",
+    department: "Mechanical Engineering",
+    batch: "Class of 2024",
+    company: "Boeing",
+    designation: "Aerodynamics Consultant @ Boeing",
+    salary: 10500,
+    quote: "Designing next-gen flight surfaces was my dream since Year 1. We did it!"
+  },
+  {
+    name: "Ananya Patel",
+    avatar: "👩‍🎓",
+    department: "Computer Science & Engineering",
+    batch: "Class of 2024",
+    company: "Meta AI",
+    designation: "AI Research Associate @ Meta AI",
+    salary: 14000,
+    quote: "Publishing papers and stepping into Meta AI research. Proud to be an alumnus!"
+  }
 ];
 
 // Generate 500 Students
@@ -49,120 +113,82 @@ function generate500Students() {
   return students;
 }
 
-// Generate Alumni Records
-function generateAlumniData() {
+// Generate EXACTLY 1000 Alumni Records (Including Happy Exit Graduates at the top)
+function generate1000Alumni() {
   const alumniRoles = [
-    { title: "Senior Software Engineer", company: "Google", baseSalary: 12500 },
-    { title: "Cloud Solutions Architect", company: "Amazon AWS", baseSalary: 13200 },
-    { title: "Staff AI Research Engineer", company: "Microsoft", baseSalary: 14800 },
-    { title: "Lead Product Manager", company: "Salesforce", baseSalary: 11800 },
-    { title: "Senior DevOps Lead", company: "Netflix", baseSalary: 12900 },
-    { title: "Autonomous Vehicle Specialist", company: "Tesla", baseSalary: 13500 },
-    { title: "Senior Mechanical Consultant", company: "Boeing", baseSalary: 10500 },
-    { title: "Power Grid Automation Lead", company: "Siemens", baseSalary: 10200 },
-    { title: "Full Stack Engineering Lead", company: "Uber", baseSalary: 11400 },
-    { title: "Cybersecurity Principal Analyst", company: "Cisco", baseSalary: 12100 },
-    { title: "Data Platform Architect", company: "Meta", baseSalary: 14200 },
-    { title: "Robotics Systems Specialist", company: "Boston Dynamics", baseSalary: 13800 }
+    { title: "Senior Software Engineer", company: "Google", base: 12500 },
+    { title: "Cloud Solutions Architect", company: "Amazon AWS", base: 13200 },
+    { title: "Staff AI Research Engineer", company: "Microsoft", base: 14800 },
+    { title: "Lead Product Manager", company: "Apple", base: 13600 },
+    { title: "Senior DevOps Lead", company: "Netflix", base: 12900 },
+    { title: "Autonomous Vehicle Specialist", company: "Tesla", base: 13500 },
+    { title: "Senior Mechanical Consultant", company: "Boeing", base: 10500 },
+    { title: "Power Grid Automation Lead", company: "Siemens", base: 10200 },
+    { title: "Full Stack Engineering Lead", company: "Uber", base: 11400 },
+    { title: "Cybersecurity Principal Analyst", company: "Cisco", base: 12100 },
+    { title: "Data Platform Architect", company: "Meta", base: 14200 },
+    { title: "Robotics Systems Specialist", company: "Boston Dynamics", base: 13800 },
+    { title: "Silicon Design Engineer", company: "NVIDIA", base: 14500 },
+    { title: "Wireless Systems Architect", company: "Qualcomm", base: 11900 },
+    { title: "Propulsion Dynamics Lead", company: "SpaceX", base: 13900 },
+    { title: "Cloud Infrastructure Architect", company: "Oracle", base: 11600 }
   ];
 
   const alumni = [];
   let id = 1;
 
-  departments.forEach((dept, dIdx) => {
-    for (let i = 1; i <= 40; i++) {
-      const alumId = `ALUM-${2020 + (i % 5)}-${String(id).padStart(3, "0")}`;
-      const fName = firstNames[(id * 9 + dIdx) % firstNames.length];
-      const lName = lastNames[(id * 13 + i) % lastNames.length];
-      const name = `${fName} ${lName}`;
-      const roleObj = alumniRoles[(id + i) % alumniRoles.length];
-      const monthlySalary = roleObj.baseSalary + ((i * 150) % 3500);
-
-      alumni.push({
-        id,
-        alumId,
-        name,
-        department: dept.name,
-        designation: `${roleObj.title} @ ${roleObj.company}`,
-        monthlySalaryFormatted: `$${monthlySalary.toLocaleString()} / mo`,
-        monthlySalaryRaw: monthlySalary
-      });
-
-      id++;
-    }
+  // 1. First add the featured Happy Exit Students so they appear in the Alumni list!
+  happyExitStudents.forEach((hes) => {
+    alumni.push({
+      id,
+      alumId: `ALUM-2024-${String(id).padStart(4, "0")}`,
+      name: hes.name,
+      department: hes.department,
+      designation: hes.designation,
+      monthlySalaryFormatted: `$${hes.salary.toLocaleString()} / mo`,
+      monthlySalaryRaw: hes.salary,
+      isFeatured: true
+    });
+    id++;
   });
+
+  // 2. Generate remaining up to exactly 1,000 alumni
+  const targetTotal = 1000;
+  const remainingCount = targetTotal - alumni.length;
+
+  for (let i = 0; i < remainingCount; i++) {
+    const dept = departments[i % departments.length];
+    const alumYear = 2018 + (i % 6); // 2018 to 2023
+    const alumId = `ALUM-${alumYear}-${String(id).padStart(4, "0")}`;
+
+    const fName = firstNames[(id * 17 + i) % firstNames.length];
+    const lName = lastNames[(id * 23 + i) % lastNames.length];
+    const name = `${fName} ${lName}`;
+
+    const role = alumniRoles[(id + i) % alumniRoles.length];
+    const monthlySalary = role.base + ((i * 125) % 4500);
+
+    alumni.push({
+      id,
+      alumId,
+      name,
+      department: dept.name,
+      designation: `${role.title} @ ${role.company}`,
+      monthlySalaryFormatted: `$${monthlySalary.toLocaleString()} / mo`,
+      monthlySalaryRaw: monthlySalary,
+      isFeatured: false
+    });
+
+    id++;
+  }
 
   return alumni;
 }
 
-// Happy Exit Students Gallery Data
-const happyExitStudents = [
-  {
-    name: "Aarav Sharma",
-    avatar: "👨‍🎓",
-    department: "Computer Science & Engineering",
-    batch: "Class of 2024",
-    company: "Google",
-    designation: "Software Engineer",
-    salary: "$11,500 / mo",
-    quote: "Antigravity ERP made tracking our projects seamless! Excited to step into Google Cloud."
-  },
-  {
-    name: "Priya Iyer",
-    avatar: "👩‍🎓",
-    department: "Electronics & Communication",
-    batch: "Class of 2024",
-    company: "Microsoft",
-    designation: "Firmware Engineer",
-    salary: "$12,200 / mo",
-    quote: "A thrilling journey from university labs to Microsoft hardware engineering!"
-  },
-  {
-    name: "Rohan Verma",
-    avatar: "👨‍🎓",
-    department: "Information Technology",
-    batch: "Class of 2024",
-    company: "Amazon AWS",
-    designation: "Solutions Architect",
-    salary: "$10,800 / mo",
-    quote: "Grateful for the rigorous mentorship. Heading straight to AWS cloud infrastructure!"
-  },
-  {
-    name: "Sneha Kulkarni",
-    avatar: "👩‍🎓",
-    department: "Electrical & Electronics",
-    batch: "Class of 2024",
-    company: "Tesla",
-    designation: "Battery Systems Engineer",
-    salary: "$13,000 / mo",
-    quote: "Thrilled to contribute to clean energy mobility and electric battery tech at Tesla!"
-  },
-  {
-    name: "Vikram Singh",
-    avatar: "👨‍🎓",
-    department: "Mechanical Engineering",
-    batch: "Class of 2024",
-    company: "Boeing",
-    designation: "Aerodynamics Consultant",
-    salary: "$10,500 / mo",
-    quote: "Designing next-gen flight surfaces was my dream since Year 1. We did it!"
-  },
-  {
-    name: "Ananya Patel",
-    avatar: "👩‍🎓",
-    department: "Computer Science & Engineering",
-    batch: "Class of 2024",
-    company: "Meta AI",
-    designation: "AI Research Associate",
-    salary: "$14,000 / mo",
-    quote: "Publishing papers and stepping into Meta AI research. Proud to be an alumnus!"
-  }
-];
-
 const allStudents = generate500Students();
 let filteredStudents = [...allStudents];
 
-const allAlumni = generateAlumniData();
+const allAlumni = generate1000Alumni();
 let filteredAlumni = [...allAlumni];
 
 // ==========================================
@@ -224,7 +250,7 @@ document.addEventListener("DOMContentLoaded", () => {
     return "on-leave";
   }
 
-  // --- RENDER STUDENTS TABLE ---
+  // --- RENDER STUDENTS TABLE (500 RECORDS) ---
   function renderStudentRows(records) {
     studentTableBody.innerHTML = "";
     if (records.length === 0) {
@@ -261,7 +287,7 @@ document.addEventListener("DOMContentLoaded", () => {
       : `Filtered: ${records.length} of 500 students`;
   }
 
-  // --- RENDER ALUMNI TABLE ---
+  // --- RENDER ALUMNI TABLE (1,000 RECORDS) ---
   function renderAlumniRows(records) {
     alumniTableBody.innerHTML = "";
     if (records.length === 0) {
@@ -273,7 +299,7 @@ document.addEventListener("DOMContentLoaded", () => {
           </td>
         </tr>
       `;
-      alumniRecordCount.textContent = "Filtered: 0 alumni";
+      alumniRecordCount.textContent = "Filtered: 0 of 1,000 alumni";
       return;
     }
 
@@ -281,10 +307,12 @@ document.addEventListener("DOMContentLoaded", () => {
     records.forEach((a, idx) => {
       const row = document.createElement("tr");
       const rNum = idx + 2;
+      const featuredBadge = a.isFeatured ? ` <span style="font-size:0.7rem; background:#dbeafe; color:#1e40af; padding:2px 6px; border-radius:4px; font-weight:700;">★ Grad 2024</span>` : '';
+      
       row.innerHTML = `
         <td class="row-num">${rNum}</td>
         <td class="id-cell" data-col="A" data-row="${rNum}">${a.alumId}</td>
-        <td class="name-cell" data-col="B" data-row="${rNum}">${a.name}</td>
+        <td class="name-cell" data-col="B" data-row="${rNum}">${a.name}${featuredBadge}</td>
         <td data-col="C" data-row="${rNum}">${a.department}</td>
         <td class="designation-cell" data-col="D" data-row="${rNum}">${a.designation}</td>
         <td class="salary-cell" data-col="E" data-row="${rNum}">${a.monthlySalaryFormatted}</td>
@@ -294,8 +322,8 @@ document.addEventListener("DOMContentLoaded", () => {
     alumniTableBody.appendChild(fragment);
 
     alumniRecordCount.textContent = records.length === allAlumni.length
-      ? `Ready | ${records.length} alumni loaded`
-      : `Filtered: ${records.length} of ${allAlumni.length} alumni`;
+      ? `Ready | 1,000 alumni loaded`
+      : `Filtered: ${records.length} of 1,000 alumni`;
   }
 
   // --- RENDER HAPPY EXIT GALLERY ---
@@ -320,7 +348,7 @@ document.addEventListener("DOMContentLoaded", () => {
           <p class="exit-quote">"${item.quote}"</p>
           <div class="card-footer">
             <span>Role: ${item.designation}</span>
-            <span>${item.salary}</span>
+            <span>$${item.salary.toLocaleString()} / mo</span>
           </div>
         </div>
       `;
@@ -421,7 +449,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const url = URL.createObjectURL(blob);
     const link = document.createElement("a");
     link.href = url;
-    link.download = "Students_ERP_List.csv";
+    link.download = "Students_ERP_500_List.csv";
     link.click();
   });
 
@@ -435,7 +463,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const url = URL.createObjectURL(blob);
     const link = document.createElement("a");
     link.href = url;
-    link.download = "Alumni_Placements_Directory.csv";
+    link.download = "Alumni_Directory_1000_List.csv";
     link.click();
   });
 
