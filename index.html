@@ -3,12 +3,77 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hello World</title>
+  <title>Hello World - Student ERP</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <main class="container">
-    <button id="helloBtn" class="hello-button" type="button">Hello World</button>
+  <main class="page-container">
+    <div class="button-wrapper">
+      <button id="helloBtn" class="hello-button" type="button">
+        Hello World
+      </button>
+      <p class="hint-text">Click the button to view the Student ERP Sheet</p>
+    </div>
+
+    <section id="erpSection" class="erp-wrapper hidden" aria-hidden="true">
+      <div class="excel-card">
+        <!-- Excel Title Bar -->
+        <div class="excel-titlebar">
+          <div class="excel-brand">
+            <span class="excel-icon">X</span>
+            <span class="excel-title">Student_ERP_List.xlsx — Excel</span>
+          </div>
+          <div class="window-controls">
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+          </div>
+        </div>
+
+        <!-- Excel Formula / Search Bar -->
+        <div class="excel-bar">
+          <div class="cell-address">A1</div>
+          <div class="fx-label">fx</div>
+          <input type="text" id="searchInput" class="formula-input" placeholder="Search student by name, roll no, or department..." />
+        </div>
+
+        <!-- Spreadsheet Table Container -->
+        <div class="table-scroll">
+          <table class="excel-table">
+            <thead>
+              <tr class="col-headers">
+                <th class="corner-header"></th>
+                <th>A</th>
+                <th>B</th>
+                <th>C</th>
+                <th>D</th>
+                <th>E</th>
+              </tr>
+              <tr class="data-headers">
+                <th class="row-num">1</th>
+                <th>Roll No</th>
+                <th>Student Name</th>
+                <th>Department</th>
+                <th>Semester</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="studentTableBody">
+              <!-- Rendered via script.js -->
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Excel Sheet Footer -->
+        <div class="excel-footer">
+          <div class="sheet-tabs">
+            <button class="sheet-tab active" type="button">Students_ERP</button>
+            <button class="sheet-tab" type="button">+</button>
+          </div>
+          <div class="footer-stats" id="recordCount">10 records loaded</div>
+        </div>
+      </div>
+    </section>
   </main>
 
   <script src="script.js"></script>
